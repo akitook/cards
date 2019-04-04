@@ -1,11 +1,6 @@
 <template>
   <div class="logo">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="133"
-      height="61"
-      viewBox="0 0 133 61"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133 61">
       <text
         transform="translate(0 48)"
         fill="#232232"
@@ -20,8 +15,9 @@
 
 <style scoped lang="scss">
 .logo {
-  display: inline;
-  width: 200px;
+  width: 100px;
   height: auto;
+  padding: 16px 0;
+  margin: 0 auto;
 }
 </style>

@@ -6,9 +6,10 @@
 
 <style scoped lang="scss">
 .button {
+  display: inline-block;
   padding: 8px 16px;
   border-radius: 24px;
   color: #fff;
-  background-color: #353083;
+  background-color: $primary-50;
 }
 </style>

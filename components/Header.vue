@@ -1,14 +1,16 @@
 <template>
   <div class="header">
     <Logo />
+    <CardSelector />
   </div>
 </template>
 <script>
 import Logo from '~/components/Logo.vue'
-
+import CardSelector from '~/components/CardSelector'
 export default {
   components: {
-    Logo
+    Logo,
+    CardSelector
   }
 }
 </script>
