@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <Header />
-    <Cards />
+    <Card />
     <nuxt />
   </div>
 </template>
 <script>
-import Header from '~/components/Header.vue'
-import Cards from '~/components/Cards.vue'
+import Header from '~/components/molecules/Header.vue'
+import Card from '~/components/organisms/Card.vue'
 
 export default {
   components: {
     Header,
-    Cards
+    Card
   }
 }
 </script>

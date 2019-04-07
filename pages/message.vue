@@ -1,6 +1,9 @@
 <template>
   <section class="pageContainer">
-    <Button @action="toMessage">
+    <Button role="secondary" @action="backToHome">
+      back
+    </Button>
+    <Button>
       next
     </Button>
   </section>
@@ -12,16 +15,13 @@ export default {
   components: {
     Button
   },
-  created() {
-    this.$store.dispatch('cards/fetchCards')
-  },
   mounted() {
-    this.$store.dispatch('card/flip', false)
-    this.$store.dispatch('card/changeWritable', false)
+    this.$store.dispatch('card/flip', true)
+    this.$store.dispatch('card/changeWritable', true)
   },
   methods: {
-    toMessage() {
-      this.$router.push('/message')
+    backToHome() {
+      this.$router.push('/')
     }
   }
 }

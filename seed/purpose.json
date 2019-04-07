@@ -1,0 +1,34 @@
+[
+  {
+    "id": "seasonal",
+    "title": "Seasonal"
+  },
+  {
+    "id": "birthday",
+    "title": "Birthday"
+  },
+  {
+    "id": "thankyou",
+    "title": "ThankYou"
+  },
+  {
+    "id": "love",
+    "title": "Love"
+  },
+  {
+    "id": "congratulations",
+    "title": "Congratulations"
+  },
+  {
+    "id": "wedding",
+    "title": "Wedding"
+  },
+  {
+    "id": "hellobaby",
+    "title": "HelloBaby"
+  },
+  {
+    "id": "workplace",
+    "title": "WorkPlace"
+  }
+]

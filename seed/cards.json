@@ -1,0 +1,27 @@
+[
+  {
+    "id": "0000",
+    "title": "sample01",
+    "category": "seasonal"
+  },
+  {
+    "id": "0001",
+    "title": "sample02",
+    "category": "seasonal"
+  },
+  {
+    "id": "0002",
+    "title": "sample03",
+    "category": "seasonal"
+  },
+  {
+    "id": "0003",
+    "title": "sample04",
+    "category": "seasonal"
+  },
+  {
+    "id": "0004",
+    "title": "sample05",
+    "category": "seasonal"
+  }
+]
