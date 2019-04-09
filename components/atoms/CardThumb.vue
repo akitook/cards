@@ -20,7 +20,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .CardThumb {
-  width: 40px;
+  width: 32px;
   box-shadow: 0 0 4px 0 rgba(14, 19, 24, 0.15);
   border-radius: 4px;
   margin: 8px;

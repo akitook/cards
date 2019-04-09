@@ -23,7 +23,7 @@ export default {
   mounted() {
     const canvas = new fabric.Canvas('canvas')
     canvas.isDrawingMode = true
-    canvas.freeDrawingBrush.width = 4
+    canvas.freeDrawingBrush.width = 10
   }
 }
 </script>

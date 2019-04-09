@@ -6,7 +6,8 @@ const state = {
     category: 'seasonal'
   },
   isFlipped: false,
-  isWritable: false
+  isWritable: false,
+  clear: false
 }
 
 const getters = {
@@ -18,7 +19,7 @@ const getters = {
   },
   getCardSize: state => {
     if (process.browser) {
-      const cardWidth = window.innerWidth * 0.9
+      const cardWidth = window.innerWidth < 400 ? window.innerWidth * 0.9 : 400
       const cardHeight = cardWidth * 1.48
       return { width: cardWidth, height: cardHeight }
     }
@@ -36,6 +37,9 @@ const actions = {
   },
   changeWritable({ dispatch, commit }, boolean) {
     commit('CHANGE_WRITABLE', boolean)
+  },
+  clearCanvas({ dispatch, commit }) {
+    commit('CLEAR_CANVAS')
   }
   /*
   fetchQuestionById({ dispatch, commit }, id) {
@@ -92,10 +96,9 @@ const mutations = {
   CHANGE_WRITABLE: (state, boolean) => {
     state.isWritable = boolean
   },
-  SUCCESS_FETCH_QUESTION: (state, res) => {},
-  FAILED_FETCH_QUESTION: (state, err) => {},
-  SUCCESS_DELETE_QUESTION: (state, res) => {},
-  FAILED_DELETE_QUESTION: (state, err) => {}
+  CLEAR_CANVAS: state => {
+    state.clear = true
+  }
 }
 
 export default {

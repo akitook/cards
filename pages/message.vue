@@ -3,7 +3,7 @@
     <Button role="secondary" @action="backToHome">
       back
     </Button>
-    <Button>
+    <Button @action="hohoho">
       next
     </Button>
   </section>
@@ -22,6 +22,9 @@ export default {
   methods: {
     backToHome() {
       this.$router.push('/')
+    },
+    hohoho() {
+      this.$store.dispatch('card/clearCanvas')
     }
   }
 }
