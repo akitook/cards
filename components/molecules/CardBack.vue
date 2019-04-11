@@ -20,10 +20,25 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      canvas: null
+    }
+  },
+  watch: {
+    writable: function(newVal) {
+      console.log('change writable mode.')
+      this.canvas.isDrawingMode = newVal
+    }
+  },
   mounted() {
-    const canvas = new fabric.Canvas('canvas')
-    canvas.isDrawingMode = true
-    canvas.freeDrawingBrush.width = 10
+    this.canvas = new fabric.Canvas('canvas')
+    this.canvas.isDrawingMode = true
+    this.canvas.freeDrawingBrush.width = 6
+    this.canvas.freeDrawingBrush.color = '#333'
+    this.canvas.on('after:render', () => {
+      this.$store.dispatch('card/changeCanvas', this.canvas.toJSON())
+    })
   }
 }
 </script>

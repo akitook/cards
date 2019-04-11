@@ -6,8 +6,11 @@ const state = {
     category: 'seasonal'
   },
   isFlipped: false,
+  isReady: false,
+  isSend: false,
   isWritable: false,
-  clear: false
+  clear: false,
+  json: null
 }
 
 const getters = {
@@ -16,6 +19,12 @@ const getters = {
   },
   isFlipped: state => {
     return state.isFlipped
+  },
+  isReady: state => {
+    return state.isReady
+  },
+  isSend: state => {
+    return state.isSend
   },
   getCardSize: state => {
     if (process.browser) {
@@ -35,11 +44,23 @@ const actions = {
     commit('SET_CARD_DATA', cardData)
     dispatch('flip', false)
   },
+  changeReady({ commit }, boolean) {
+    commit('CHANGE_READY', boolean)
+  },
   changeWritable({ dispatch, commit }, boolean) {
     commit('CHANGE_WRITABLE', boolean)
   },
   clearCanvas({ dispatch, commit }) {
     commit('CLEAR_CANVAS')
+  },
+  changeCanvas({ commit }, json) {
+    commit('SET_OBJECT', json)
+  },
+  send({ dispatch, commit }) {
+    commit('SEND')
+  },
+  clearAll({ dispatch, commit }) {
+    commit('CLEAR_ALL')
   }
   /*
   fetchQuestionById({ dispatch, commit }, id) {
@@ -86,7 +107,7 @@ const actions = {
 
 const mutations = {
   FLIP: (state, boolean) => {
-    boolean == null
+    boolean === 'toggle'
       ? (state.isFlipped = !state.isFlipped)
       : (state.isFlipped = boolean)
   },
@@ -96,8 +117,28 @@ const mutations = {
   CHANGE_WRITABLE: (state, boolean) => {
     state.isWritable = boolean
   },
+  CHANGE_READY: (state, boolean) => {
+    state.isReady = boolean
+  },
   CLEAR_CANVAS: state => {
     state.clear = true
+  },
+  SET_OBJECT: (state, json) => {
+    state.json = json
+  },
+  SEND: state => {
+    state.isSend = true
+  },
+  CLEAR_ALL: state => {
+    state.data = {
+      id: '0000',
+      category: 'seasonal'
+    }
+    state.isFlipped = false
+    state.isReady = false
+    state.isWritable = false
+    state.isSend = false
+    state.json = null
   }
 }
 

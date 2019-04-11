@@ -1,8 +1,6 @@
 <template>
   <div class="header">
-    <nuxt-link to="/">
-      <Logo :class="{ small: this.$route.name !== 'index' }" />
-    </nuxt-link>
+    <Logo :class="{ small: this.$route.name !== 'index' }" />
     <CardSelector v-if="this.$route.name === 'index'" />
   </div>
 </template>

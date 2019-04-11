@@ -18,6 +18,7 @@ export default {
   mounted() {
     this.$store.dispatch('card/flip', false)
     this.$store.dispatch('card/changeWritable', false)
+    this.$store.dispatch('card/changeReady', false)
   },
   methods: {
     toMessage() {

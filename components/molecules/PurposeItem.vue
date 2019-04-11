@@ -63,6 +63,7 @@ export default {
     height: 24px;
   }
   .title {
+    font-family: $font-1;
     font-size: 10px;
     color: $dark-087;
   }

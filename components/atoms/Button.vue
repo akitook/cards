@@ -16,22 +16,23 @@ export default {
 <style scoped lang="scss">
 .button {
   display: inline-block;
+  font-family: $font-1;
   padding: 4px 32px;
-  border-radius: 24px;
-  color: #fff;
-  background-color: $primary-50;
+  border: 2px solid $dark-054;
+  border-radius: 0.4em 2em 0.5em 3em/3em 0.5em 2em 0.5em;
+  color: $dark-087;
   a {
-    color: #fff;
+    color: $dark-087;
     text-decoration: none;
   }
   &.primary {
-    background-color: $primary-50;
+    background-color: #fff;
   }
   &.secondary {
-    background-color: #fff;
-    color: $primary-50;
+    color: $dark-054;
+    border: none;
     a {
-      color: $primary-50;
+      color: $dark-054;
     }
   }
 }
