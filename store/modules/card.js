@@ -10,7 +10,8 @@ const state = {
   isSend: false,
   isWritable: false,
   clear: false,
-  json: null
+  json: null,
+  canvas: null
 }
 
 const getters = {
@@ -61,48 +62,10 @@ const actions = {
   },
   clearAll({ dispatch, commit }) {
     commit('CLEAR_ALL')
-  }
-  /*
-  fetchQuestionById({ dispatch, commit }, id) {
-    firebase
-      .fetchQuestion(id)
-      .then(res => {
-        console.log(res)
-        commit('SUCCESS_FETCH_QUESTION')
-        dispatch('setQuestion', res)
-      })
-      .catch(err => {
-        console.log(err)
-        commit('FAILED_FETCH_QUESTION')
-      })
   },
-  deleteQuestion({ dispatch, commit }, id) {
-    firebase
-      .deleteQuestion(id)
-      .then(res => {
-        commit('SUCCESS_DELETE_QUESTION')
-        dispatch(
-          'snackbar/showSnackbar',
-          {
-            type: 'info',
-            message: '質問を削除しました'
-          },
-          { root: true }
-        )
-      })
-      .catch(err => {
-        commit('FAILED_DELETE_QUESTION')
-        dispatch(
-          'snackbar/showSnackbar',
-          {
-            type: 'error',
-            message: err + '問題が発生しました'
-          },
-          { root: true }
-        )
-      })
+  initCanvas({ dispatch, commit }, canvas) {
+    commit('INIT_CANVAS', canvas)
   }
-  */
 }
 
 const mutations = {
@@ -121,7 +84,8 @@ const mutations = {
     state.isReady = boolean
   },
   CLEAR_CANVAS: state => {
-    state.clear = true
+    state.canvas = null
+    state.json = null
   },
   SET_OBJECT: (state, json) => {
     state.json = json
@@ -139,6 +103,9 @@ const mutations = {
     state.isWritable = false
     state.isSend = false
     state.json = null
+  },
+  INIT_CANVAS: (state, canvas) => {
+    state.canvas = canvas
   }
 }
 

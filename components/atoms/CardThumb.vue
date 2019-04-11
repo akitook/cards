@@ -26,7 +26,7 @@ export default {
   margin: 8px;
   transition: all 0.2s;
   &.selected {
-    transform: scale(1.1);
+    transform: scale(1.2);
     box-shadow: 0 0 12px 0 rgba(14, 19, 24, 0.15);
   }
   img {
