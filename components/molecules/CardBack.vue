@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 import { fabric } from 'fabric'
 export default {
   props: {
@@ -19,6 +18,10 @@ export default {
     height: {
       type: Number,
       required: true
+    },
+    clear: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
@@ -26,23 +29,22 @@ export default {
       canvas: null
     }
   },
-  computed: {
-    ...mapState(['card'])
-  },
   watch: {
     writable: function(newVal) {
-      console.log('change writable mode.')
-      this.card.canvas.isDrawingMode = newVal
+      this.canvas.isDrawingMode = newVal
+    },
+    clear: function() {
+      this.canvas.clear()
     }
   },
   mounted() {
-    const canvas = new fabric.Canvas('canvas')
-    canvas.isDrawingMode = true
-    canvas.freeDrawingBrush.width = 6
-    canvas.freeDrawingBrush.color = '#333'
-    this.$store.dispatch('card/initCanvas', canvas)
-    canvas.on('after:render', () => {
-      this.$store.dispatch('card/changeCanvas', canvas.toJSON())
+    this.canvas = new fabric.Canvas('canvas')
+
+    this.canvas.isDrawingMode = true
+    this.canvas.freeDrawingBrush.width = 6
+    this.canvas.freeDrawingBrush.color = '#333'
+    this.canvas.on('after:render', () => {
+      this.$store.dispatch('card/changeCanvas', this.canvas.toJSON())
     })
   }
 }

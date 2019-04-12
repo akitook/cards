@@ -14,6 +14,7 @@
     <CardFront :url="cardFrontUrl" />
     <CardBack
       :writable="card.isWritable"
+      :clear="card.clear"
       :width="getCardSize.width"
       :height="getCardSize.height"
     />

@@ -10,8 +10,7 @@ const state = {
   isSend: false,
   isWritable: false,
   clear: false,
-  json: null,
-  canvas: null
+  json: null
 }
 
 const getters = {
@@ -62,9 +61,6 @@ const actions = {
   },
   clearAll({ dispatch, commit }) {
     commit('CLEAR_ALL')
-  },
-  initCanvas({ dispatch, commit }, canvas) {
-    commit('INIT_CANVAS', canvas)
   }
 }
 
@@ -84,8 +80,8 @@ const mutations = {
     state.isReady = boolean
   },
   CLEAR_CANVAS: state => {
-    state.canvas = null
     state.json = null
+    state.clear = !state.clear
   },
   SET_OBJECT: (state, json) => {
     state.json = json
