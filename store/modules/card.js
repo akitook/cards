@@ -8,9 +8,7 @@ const state = {
   isFlipped: false,
   isReady: false,
   isSend: false,
-  isWritable: false,
-  clear: false,
-  json: null
+  isWritable: false
 }
 
 const getters = {
@@ -82,9 +80,6 @@ const mutations = {
   CLEAR_CANVAS: state => {
     state.json = null
     state.clear = !state.clear
-  },
-  SET_OBJECT: (state, json) => {
-    state.json = json
   },
   SEND: state => {
     state.isSend = true
