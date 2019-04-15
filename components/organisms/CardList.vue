@@ -5,7 +5,7 @@
         v-for="(data, index) in cards.records"
         :key="index"
         :data="data"
-        :class="{ selected: data.id === card.data.id }"
+        :class="{ selected: data.id === card.id }"
         @select="selectThumb(data)"
       />
     </div>
@@ -19,11 +19,9 @@ export default {
   components: {
     CardThumb
   },
-  computed: mapState({
-    cards: 'cards',
-    card: 'card',
-    user: 'user'
-  }),
+  computed: {
+    ...mapState(['cards', 'card'])
+  },
   methods: {
     selectThumb(data) {
       this.$store.dispatch('card/setCardData', data)

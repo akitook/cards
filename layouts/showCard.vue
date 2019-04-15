@@ -1,20 +1,15 @@
 <template>
-  <div class="default">
-    <div class="container">
-      <Header />
-      <Card />
-      <nuxt />
-    </div>
+  <div class="container">
+    <Header />
+    <nuxt />
   </div>
 </template>
 <script>
 import Header from '~/components/molecules/Header.vue'
-import Card from '~/components/organisms/Card.vue'
 
 export default {
   components: {
-    Header,
-    Card
+    Header
   }
 }
 </script>
@@ -41,13 +36,9 @@ body {
   margin: 0;
 }
 
-.default {
-  background: url('~assets/img/bg.png') center center;
-}
-
 .container {
-  max-width: 580px;
   height: 100vh;
-  margin: 0 auto;
+  background: url('~assets/img/bg.png') center center;
+  background-size: cover;
 }
 </style>

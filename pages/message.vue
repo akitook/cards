@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('card/flip', true)
-    this.$store.dispatch('card/changeWritable', true)
+    this.$store.dispatch('canvas/changeWritable', true)
   },
   methods: {
     backToHome() {

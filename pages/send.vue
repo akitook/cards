@@ -1,28 +1,29 @@
 <template>
   <section class="page-container">
-    <div class="link-container" :class="{ isShow: isSend }">
-      <input type="text" />
-      <Button>copy link</Button>
+    <div class="link-container" :class="{ isShow: card.isSend }">
+      <input id="url" type="text" :value="cardUrl" readonly />
+      <Button @action="copyURL">copy link</Button>
     </div>
-    <Button v-if="!isSend" role="secondary" @action="backToMessage"
+    <Button v-if="!card.isSend" role="secondary" @action="backToMessage"
       >back</Button
     >
-    <Button v-if="isSend" role="secondary" @action="backToHome"
+    <Button v-if="card.isSend" role="secondary" @action="backToHome"
       >back to home</Button
     >
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Button from '~/components/atoms/Button.vue'
 export default {
   components: {
     Button
   },
   computed: {
+    ...mapState(['card']),
     ...mapGetters({
-      isSend: 'card/isSend'
+      cardUrl: 'card/cardUrl'
     })
   },
   mounted() {
@@ -38,8 +39,13 @@ export default {
       this.$store.dispatch('card/clearAll')
       this.$router.push('/')
     },
-    to() {
-      this.$store.dispatch('card/clearCanvas')
+    copyURL() {
+      if (process.client) {
+        const copyTarget = document.getElementById('url')
+        copyTarget.select()
+        document.execCommand('Copy')
+        alert('Copied: ' + this.cardUrl)
+      }
     }
   }
 }

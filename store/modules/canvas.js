@@ -1,24 +1,21 @@
-// import firebase from '../../api/firebase'
 import { fabric } from 'fabric'
 
 const state = {
   counter: 0,
   data: null,
   history: [],
-  mods: 0
+  mods: 0,
+  isWritable: null
 }
 
 const getters = {}
 
 const actions = {
-  load({ commit }) {
-    commit('LOAD_CANVAS')
+  load({ commit }, canvas) {
+    commit('LOAD_CANVAS', canvas)
   },
   change({ commit }) {
     commit('SET_HISTORY')
-  },
-  send({ dispatch, commit }) {
-    commit('SEND')
   },
   clear({ dispatch, commit }) {
     commit('CLEAR_ALL')
@@ -28,6 +25,9 @@ const actions = {
   },
   undo({ commit }) {
     commit('UNDO_CANVAS')
+  },
+  changeWritable({ commit }, boolean) {
+    commit('CHANGE_WRITABLE', boolean)
   }
 }
 
@@ -43,8 +43,13 @@ const mutations = {
   INIT_CANVAS: state => {
     state.data = new fabric.Canvas('canvas')
     state.data.isDrawingMode = true
+    state.isWritable = true
     state.data.freeDrawingBrush.width = 6
     state.data.freeDrawingBrush.color = '#333'
+  },
+  LOAD_CANVAS: (state, canvas) => {
+    state.data.clear()
+    state.data.loadFromJSON(canvas)
   },
   SET_HISTORY: state => {
     state.history.push(JSON.stringify(state.data))
@@ -60,6 +65,10 @@ const mutations = {
       state.data.loadFromJSON(pop)
       state.data.renderAll()
     }
+  },
+  CHANGE_WRITABLE: (state, boolean) => {
+    state.data.isDrawingMode = boolean
+    state.isWritable = boolean
   }
 }
 

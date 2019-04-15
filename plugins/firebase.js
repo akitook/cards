@@ -8,7 +8,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(init)
 }
 
-export const providerGoogle = new firebase.auth.GoogleAuthProvider()
-export const providerTwitter = new firebase.auth.TwitterAuthProvider()
+// export const providerGoogle = new firebase.auth.GoogleAuthProvider()
+// export const providerTwitter = new firebase.auth.TwitterAuthProvider()
 
 export default firebase

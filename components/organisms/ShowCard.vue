@@ -1,16 +1,13 @@
 <template>
   <div
-    :class="{ flipped: isFlipped, ready: isReadySend, send: isSend }"
+    :class="{ flipped: isFlipped }"
     class="card-container"
     :style="{
       width: `${getCardSize.width}px`,
       height: `${getCardSize.height}px`
     }"
-    @click="sendCard"
+    @click="flipCard"
   >
-    <div class="ripple-container">
-      <RippleCircle v-if="isReadySend" />
-    </div>
     <CardFront :url="cardFrontUrl" />
     <CardBack :width="getCardSize.width" :height="getCardSize.height" />
   </div>
@@ -20,32 +17,30 @@ import { mapState, mapGetters } from 'vuex'
 
 import CardFront from '~/components/molecules/CardFront.vue'
 import CardBack from '~/components/molecules/CardBack.vue'
-import RippleCircle from '~/components/atoms/RippleCircle'
 
 export default {
   components: {
     CardFront,
-    CardBack,
-    RippleCircle
+    CardBack
+  },
+  data() {
+    return {
+      isFlipped: false
+    }
   },
   computed: {
     ...mapState(['card', 'canvas']),
     ...mapGetters({
       cardFrontUrl: 'card/cardFrontUrl',
-      isFlipped: 'card/isFlipped',
-      isReadySend: 'card/isReady',
-      isSend: 'card/isSend',
       getCardSize: 'card/getCardSize'
     })
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch('canvas/changeWritable', false)
+  },
   methods: {
-    sendCard() {
-      if (this.isReadySend) {
-        const canvasData = JSON.stringify(this.canvas.data.toJSON())
-        console.log(canvasData)
-        this.$store.dispatch('card/send', canvasData)
-      }
+    flipCard() {
+      this.isFlipped = !this.isFlipped
     }
   }
 }

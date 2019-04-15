@@ -1,4 +1,3 @@
-// import firebase from '../../api/firebase'
 import seedCardsData from '../../seed/cards'
 const state = {
   isFetching: false,

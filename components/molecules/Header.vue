@@ -19,14 +19,6 @@ export default {
   },
   computed: {
     ...mapState(['card'])
-  },
-  watch: {
-    $route() {
-      console.log(this.$route)
-    }
-  },
-  created: function() {
-    console.log(this.$route)
   }
 }
 </script>

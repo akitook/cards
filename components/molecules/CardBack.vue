@@ -8,10 +8,6 @@ import { mapState } from 'vuex'
 
 export default {
   props: {
-    writable: {
-      type: Boolean,
-      required: true
-    },
     width: {
       type: Number,
       required: true

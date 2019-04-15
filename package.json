@@ -18,7 +18,7 @@
     "animate.css": "^3.7.0",
     "cross-env": "^5.2.0",
     "fabric": "^2.7.0",
-    "firebase": "^5.9.3",
+    "firebase": "^5.9.4",
     "interactjs": "^1.3.4",
     "nuxt": "^2.4.0",
     "ress": "^1.2.2"
