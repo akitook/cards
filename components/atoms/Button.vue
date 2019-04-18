@@ -15,8 +15,11 @@ export default {
 </script>
 <style scoped lang="scss">
 .button {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: $font-1;
+  font-size: 18px;
   padding: 4px 32px;
   border: 2px solid $dark-054;
   border-radius: 0.4em 2em 0.5em 3em/3em 0.5em 2em 0.5em;
@@ -26,9 +29,11 @@ export default {
     text-decoration: none;
   }
   &.primary {
+    display: inline-block;
     background-color: #fff;
   }
   &.secondary {
+    display: inline-block;
     color: $dark-054;
     border: none;
     a {

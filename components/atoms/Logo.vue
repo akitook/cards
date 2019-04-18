@@ -24,13 +24,16 @@
 
 <style scoped lang="scss">
 .Logo {
-  width: 100px;
+  display: inline-block;
+  position: absolute;
+  left: calc(50% - 40px);
+  width: 80px;
   height: auto;
-  padding: 16px 0 0;
-  margin: 0 auto;
   transition: all 0.4s 0.1s;
   &.small {
     width: 60px;
+    top: 20px;
+    left: 16px;
   }
   path {
     fill: $dark-087;

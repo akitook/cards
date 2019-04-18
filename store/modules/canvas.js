@@ -2,7 +2,7 @@ import { fabric } from 'fabric'
 
 const state = {
   counter: 0,
-  data: null,
+  data: '',
   history: [],
   mods: 0,
   isWritable: null
@@ -16,6 +16,9 @@ const actions = {
   },
   change({ commit }) {
     commit('SET_HISTORY')
+  },
+  zoom({ commit }, opt) {
+    commit('ZOOM', opt)
   },
   clear({ dispatch, commit }) {
     commit('CLEAR_ALL')
@@ -44,7 +47,7 @@ const mutations = {
     state.data = new fabric.Canvas('canvas')
     state.data.isDrawingMode = true
     state.isWritable = true
-    state.data.freeDrawingBrush.width = 6
+    state.data.freeDrawingBrush.width = 4
     state.data.freeDrawingBrush.color = '#333'
   },
   LOAD_CANVAS: (state, canvas) => {
@@ -53,15 +56,24 @@ const mutations = {
   },
   SET_HISTORY: state => {
     state.history.push(JSON.stringify(state.data))
-    console.log('history:' + state.history.length)
+  },
+  ZOOM: (state, opt) => {
+    const delta = opt.e.deltaY
+    const pointer = state.data.getPointer(opt.e)
+    console.log(pointer)
+    let zoom = state.data.getZoom()
+    zoom = zoom + delta / 200
+    if (zoom > 20) zoom = 20
+    if (zoom < 1) zoom = 1
+    state.data.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom)
+    opt.e.preventDefault()
+    opt.e.stopPropagation()
   },
   UNDO_CANVAS: state => {
     if (state.history.length > 0) {
       state.data.clear()
-      console.log(state.history)
       const pop = state.history[state.history.length - 2]
       state.history.pop()
-      console.log('history2:' + state.history.length)
       state.data.loadFromJSON(pop)
       state.data.renderAll()
     }

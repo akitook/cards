@@ -1,19 +1,24 @@
 <template>
-  <section class="pageContainer">
+  <section v-show="card.zoom.scale <= 1" class="pageContainer">
     <Button role="secondary" @action="backToHome">
       back
     </Button>
-    <Button @action="toSend">
+    <Button v-if="canvas.history.length > 0" @action="toSend">
       next
     </Button>
   </section>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Button from '~/components/atoms/Button.vue'
 export default {
   components: {
     Button
+  },
+  computed: {
+    ...mapState(['card', 'canvas'])
   },
   mounted() {
     this.$store.dispatch('card/flip', true)

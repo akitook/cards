@@ -2,14 +2,11 @@
   <div
     :class="{ flipped: isFlipped, ready: isReadySend, send: isSend }"
     class="card-container"
-    :style="{
-      width: `${getCardSize.width}px`,
-      height: `${getCardSize.height}px`
-    }"
+    :style="styles"
     @click="sendCard"
   >
-    <div class="ripple-container">
-      <RippleCircle v-if="isReadySend" />
+    <div v-if="isReadySend && !isSend" class="ripple-container">
+      <RippleCircle />
     </div>
     <CardFront :url="cardFrontUrl" />
     <CardBack :width="getCardSize.width" :height="getCardSize.height" />
@@ -36,7 +33,16 @@ export default {
       isReadySend: 'card/isReady',
       isSend: 'card/isSend',
       getCardSize: 'card/getCardSize'
-    })
+    }),
+    styles() {
+      return {
+        '--width': `${this.getCardSize.width}px`,
+        '--height': `${this.getCardSize.height}px`,
+        '--scale': this.card.zoom.scale,
+        '--originX': `${this.card.zoom.x}%`,
+        '--originY': `${this.card.zoom.y}%`
+      }
+    }
   },
   mounted() {},
   methods: {
@@ -52,24 +58,33 @@ export default {
 </script>
 <style scoped lang="scss">
 .card-container {
+  --width: $card-width;
+  --height: $card-height;
+  --scale: 0.7;
+  --originX: 50%;
+  --originY: 50%;
   position: relative;
-  width: $card-width;
-  max-width: $card-width;
-  height: $card-height;
-  max-height: $card-height;
+  width: var(--width);
+  max-width: var(--width);
+  height: var(--height);
+  max-height: var(--height);
   margin: -70px auto;
-  box-shadow: 0 0px 12px 0 rgba(14, 19, 24, 0.15);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   transform-style: preserve-3d;
+  -webkit-transform-origin: var(--originX) var(--originY);
+  transform-origin: var(--originX) var(--originY);
   transform: scale(0.7);
   transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s,
-    width 0.7s ease-in-out, height 0.7s ease-in-out, margin 0.7s ease-in-out;
+    transform-origin 0.5s, width 0.7s ease-in-out, height 0.7s ease-in-out,
+    margin 0.7s ease-in-out, box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;
   border-radius: 4px;
   animation-duration: 1s;
   z-index: 999;
   &.flipped {
     margin: 0 auto;
-    transform: rotateX(180deg) scale(1);
+    transform: rotateX(180deg) scale(var(--scale));
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
   }
   &.ready {
     margin: 0 auto;
@@ -187,47 +202,46 @@ export default {
     transform-style: preserve-3d;
     @-webkit-keyframes bounceOutUp {
       20% {
+        opacity: 1;
         -webkit-transform: translate3d(0, -10px, 0);
-        transform: translate3d(0, -10px, 0) scale(0.7);
+        transform: translate3d(0, -10px) rotateX(0deg) scale(0.7);
       }
 
       40%,
       45% {
         opacity: 1;
         -webkit-transform: translate3d(0, 20px, 0);
-        transform: translate3d(0, 20px, 0) scale(0.7);
+        transform: translate3d(0, 20px, 0) rotateX(0deg) scale(0.7);
       }
 
       to {
         opacity: 0;
         -webkit-transform: translate3d(0, -2000px, 0);
-        transform: translate3d(0, -2000px, 0) scale(0.7);
+        transform: translate3d(0, -2000px, 0) rotateX(0deg) scale(0.7);
       }
     }
 
     @keyframes bounceOutUp {
       20% {
+        opacity: 1;
         -webkit-transform: translate3d(0, -10px, 0);
-        transform: translate3d(0, -10px, 0) scale(0.7);
+        transform: translate3d(0, -10px, 0) rotateX(0deg) scale(0.7);
       }
 
       40%,
       45% {
         opacity: 1;
         -webkit-transform: translate3d(0, 20px, 0);
-        transform: translate3d(0, 20px, 0) scale(0.7);
+        transform: translate3d(0, 20px, 0) rotateX(0deg) scale(0.7);
       }
 
       to {
         opacity: 0;
         -webkit-transform: translate3d(0, -2000px, 0);
-        transform: translate3d(0, -2000px, 0) scale(0.7);
+        transform: translate3d(0, -2000px, 0) rotateX(0deg) scale(0.7);
       }
     }
-    -webkit-animation-name: bounceOutUp;
-    animation-name: bounceOutUp;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
+    animation: bounceOutUp forwards 3s;
   }
   .ripple-container {
     position: absolute;

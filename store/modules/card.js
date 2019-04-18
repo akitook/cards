@@ -8,7 +8,14 @@ const state = {
   },
   isFlipped: false,
   isReady: false,
-  isSend: false
+  isSend: false,
+  zoom: {
+    scale: 1,
+    x: 50,
+    y: 50
+  },
+  isShowZoomWindow: false,
+  isShowGrid: false
 }
 
 const getters = {
@@ -29,7 +36,7 @@ const getters = {
   },
   getCardSize: state => {
     if (process.browser) {
-      const cardWidth = window.innerWidth < 400 ? window.innerWidth * 0.9 : 400
+      const cardWidth = window.innerWidth < 400 ? window.innerWidth * 0.8 : 400
       const cardHeight = cardWidth * 1.48
       return { width: cardWidth, height: cardHeight }
     }
@@ -40,6 +47,15 @@ const getters = {
 const actions = {
   flip({ dispatch, commit }, boolean) {
     commit('FLIP', boolean)
+  },
+  zoom({ commit }, { scale, x, y }) {
+    commit('ZOOM', { scale, x, y })
+  },
+  showZoomWindow({ commit }, boolean) {
+    commit('SHOW_ZOOM_WINDOW', boolean)
+  },
+  showGrid({ commit }, boolean) {
+    commit('SHOW_GRID', boolean)
   },
   setCardData({ dispatch, commit }, cardData) {
     commit('SET_CARD_DATA', cardData)
@@ -83,6 +99,21 @@ const mutations = {
     boolean === 'toggle'
       ? (state.isFlipped = !state.isFlipped)
       : (state.isFlipped = boolean)
+  },
+  ZOOM: (state, { scale, x, y }) => {
+    state.zoom.scale = scale
+    state.zoom.x = x
+    state.zoom.y = y
+  },
+  SHOW_ZOOM_WINDOW: (state, boolean) => {
+    boolean === 'toggle'
+      ? (state.isShowZoomWindow = !state.isShowZoomWindow)
+      : (state.isShowZoomWindow = boolean)
+  },
+  SHOW_GRID: (state, boolean) => {
+    boolean === 'toggle'
+      ? (state.isShowGrid = !state.isShowGrid)
+      : (state.isShowGrid = boolean)
   },
   SET_CARD_DATA: (state, res) => {
     state.template = res

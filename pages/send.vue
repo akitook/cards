@@ -29,6 +29,7 @@ export default {
   mounted() {
     this.$store.dispatch('card/flip', false)
     this.$store.dispatch('card/changeReady', true)
+    this.$store.dispatch('canvas/changeWritable', false)
   },
   methods: {
     backToMessage() {

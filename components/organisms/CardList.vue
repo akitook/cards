@@ -5,7 +5,7 @@
         v-for="(data, index) in cards.records"
         :key="index"
         :data="data"
-        :class="{ selected: data.id === card.id }"
+        :class="{ selected: data.id === card.template.id }"
         @select="selectThumb(data)"
       />
     </div>
@@ -34,7 +34,7 @@ export default {
 .CardList {
   position: relative;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 8px;
   .container {
     display: flex;
     align-items: flex-end;
