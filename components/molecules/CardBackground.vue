@@ -1,8 +1,6 @@
 <template>
-  <div class="back-container">
-    <canvas id="canvas" :width="width" :height="height"></canvas>
-    <CardBackground />
-    <div v-if="card.isShowGrid" class="grid-container">
+  <div class="CardBackground">
+    <div v-if="type === 1" class="grid">
       <div />
       <div />
       <div />
@@ -16,52 +14,27 @@
       <div />
       <div />
     </div>
+    <div v-else :class="`type-${type}`" class="bg" />
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
-import CardBackground from '~/components/molecules/CardBackground'
 export default {
-  components: {
-    CardBackground
-  },
   props: {
-    width: {
-      type: Number,
-      required: true
-    },
-    height: {
+    type: {
       type: Number,
       required: true
     }
-  },
-  computed: {
-    ...mapState(['card', 'canvas'])
-  },
-  mounted() {
-    this.$store.dispatch('canvas/init')
-    this.canvas.data.on('path:created', () => {
-      this.$store.dispatch('canvas/change')
-    })
   }
 }
 </script>
 <style scoped lang="scss">
-.back-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.CardBackground {
   position: absolute;
   top: 0;
-  backface-visibility: hidden;
-  transform: rotateX(180deg);
   width: 100%;
   height: 100%;
-  background: #fff;
   z-index: -1;
-  .grid-container {
-    position: absolute;
-    top: 0;
+  .grid {
     width: 100%;
     height: 100%;
     display: flex;
@@ -73,6 +46,26 @@ export default {
       width: 33%;
       height: 25%;
       border: 1px dotted $dark-012;
+    }
+  }
+  .bg {
+    width: 100%;
+    height: 100%;
+    &.type-0 {
+    }
+    &.type-2 {
+      background: url('~assets/img/bg/linedpaper_@2x.png') center center;
+      background-size: cover;
+    }
+    &.type-3 {
+      background: url('~assets/img/bg/exclusive_paper_@2x.png') center center;
+      background-size: cover;
+    }
+    &.type-4 {
+      background: url('~assets/img/bg/handmadepaper_@2x.png') center center;
+    }
+    &.type-5 {
+      background: url('~assets/img/bg/hip-square.png') center center;
     }
   }
 }

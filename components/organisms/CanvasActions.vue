@@ -1,6 +1,18 @@
 <template>
   <div class="CanvasActions">
-    <IconButton text="text">
+    <IconButton color="red" text="Clear All" @action="clearCanvas">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
+        />
+      </svg>
+    </IconButton>
+    <IconButton text="text" @action="newText">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
@@ -12,15 +24,17 @@
         />
       </svg>
     </IconButton>
-    <iconButton text="grid" @action="showGrid">
+    <iconButton text="ground" @action="switchBg">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         width="14"
         height="14"
+        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
       >
         <path
-          d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"
+          d="M22 0c1.104 0 2 .896 2 2v20c0 1.104-.896 2-2 2h-20c-1.104 0-2-.896-2-2v-20c0-1.104.896-2 2-2h20zm0 2.75c0-.413-.335-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75v18.5c0 .415.337.75.75.75h18.5c.414 0 .75-.336.75-.75v-18.5z"
         />
       </svg>
     </iconButton>
@@ -33,18 +47,6 @@
       >
         <path
           d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"
-        />
-      </svg>
-    </IconButton>
-    <IconButton color="red" text="All Clear" @action="clearCanvas">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"
         />
       </svg>
     </IconButton>
@@ -82,8 +84,11 @@ export default {
     showZoomWindow() {
       this.$store.dispatch('card/showZoomWindow', 'toggle')
     },
-    showGrid() {
-      this.$store.dispatch('card/showGrid', 'toggle')
+    switchBg() {
+      this.$store.dispatch('card/switchBg')
+    },
+    newText() {
+      this.$store.dispatch('canvas/newText')
     }
   }
 }

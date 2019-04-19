@@ -42,7 +42,6 @@ body {
 }
 
 .default {
-  // background: url('~assets/img/bg.png') center center;
 }
 
 .container {

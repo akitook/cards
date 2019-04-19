@@ -2,14 +2,9 @@
   <div v-show="card.isShowZoomWindow" class="CardZoom">
     <canvas id="canvas2" width="84" height="124.32" />
     <div class="scale-container">
-      <div
-        v-for="n in 12"
-        :key="n"
-        class="button"
-        :class="{ zoomed: grid(n) === zoomGrid }"
-      />
+      <div v-for="n in 12" :key="n" class="button" />
     </div>
-    <div class="clear-button" @click="zoomCard('clear')">zoom out</div>
+    <div class="clear-button" @click="zoomOut">zoom out</div>
   </div>
 </template>
 <script>
@@ -42,7 +37,7 @@ export default {
     canvas2.setWidth(84)
     canvas2.setHeight(124.32)
     this.data = canvas2
-    this.canvas.data.on('after:render', () => {
+    this.canvas.data.on('path:created', () => {
       this.data.clear()
       this.data.loadFromJSON(this.canvas.history.slice(-1)[0])
       this.data.setZoom(this.scale)
@@ -53,73 +48,19 @@ export default {
     })
     this.data.on('mouse:up', event => {
       const point = this.data.getPointer(event.e)
-      console.log(point)
+      const scale = 4
+      const rate = this.getCardSize.width / 84
+      console.log(rate)
+      const x = point.x
+      // rotateしているため, yの値を計算
+      const y = this.getCardSize.height - point.y
+      console.log(x, y)
+      this.$store.dispatch('card/zoom', { scale, x, y })
     })
   },
   methods: {
-    grid(n) {
-      let x, y
-      if (n < 4) {
-        x = 1
-        y = n
-      } else if (n < 7) {
-        x = 2
-        y = n - 3
-      } else if (n < 10) {
-        x = 3
-        y = n - 6
-      } else if (n < 13) {
-        x = 4
-        y = n - 9
-      }
-      return `${x}x${y}`
-    },
-    zoomCard(position) {
-      let scale, x, y
-      scale = 4
-      if (position === '1x1') {
-        x = 0
-        y = 80
-      } else if (position === '1x2') {
-        x = 50
-        y = 80
-      } else if (position === '1x3') {
-        x = 100
-        y = 80
-      } else if (position === '2x1') {
-        x = 0
-        y = 60
-      } else if (position === '2x2') {
-        x = 50
-        y = 60
-      } else if (position === '2x3') {
-        x = 100
-        y = 60
-      } else if (position === '3x1') {
-        x = 0
-        y = 40
-      } else if (position === '3x2') {
-        x = 50
-        y = 40
-      } else if (position === '3x3') {
-        x = 100
-        y = 40
-      } else if (position === '4x1') {
-        x = 0
-        y = 20
-      } else if (position === '4x2') {
-        x = 50
-        y = 20
-      } else if (position === '4x3') {
-        x = 100
-        y = 20
-      } else {
-        scale = 1
-        x = 50
-        y = 50
-      }
-      this.$store.dispatch('card/zoom', { scale, x, y })
-      this.zoomGrid = position
+    zoomOut() {
+      this.$store.dispatch('card/zoomOut')
     }
   }
 }

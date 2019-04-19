@@ -1,5 +1,6 @@
 <template>
   <div
+    v-hammer:pinch="e => pinch(e)"
     :class="{ flipped: isFlipped, ready: isReadySend, send: isSend }"
     class="card-container"
     :style="styles"
@@ -39,8 +40,12 @@ export default {
         '--width': `${this.getCardSize.width}px`,
         '--height': `${this.getCardSize.height}px`,
         '--scale': this.card.zoom.scale,
-        '--originX': `${this.card.zoom.x}%`,
-        '--originY': `${this.card.zoom.y}%`
+        '--originX': `${
+          this.card.zoom.x ? this.card.zoom.x : this.getCardSize.x / 2
+        }px`,
+        '--originY': `${
+          this.card.zoom.y ? this.card.zoom.y : this.getCardSize.y / 2
+        }px`
       }
     }
   },
@@ -52,7 +57,8 @@ export default {
         console.log(canvasData)
         this.$store.dispatch('card/send', canvasData)
       }
-    }
+    },
+    pinch(e) {}
   }
 }
 </script>
@@ -78,7 +84,7 @@ export default {
     transform-origin 0.5s, width 0.7s ease-in-out, height 0.7s ease-in-out,
     margin 0.7s ease-in-out, box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 16px;
   animation-duration: 1s;
   z-index: 999;
   &.flipped {

@@ -1,4 +1,4 @@
-import { fabric } from 'fabric'
+import { fabric } from 'fabric/dist/fabric-custom'
 
 const state = {
   counter: 0,
@@ -31,6 +31,9 @@ const actions = {
   },
   changeWritable({ commit }, boolean) {
     commit('CHANGE_WRITABLE', boolean)
+  },
+  newText({ commit }) {
+    commit('NEW_TEXT')
   }
 }
 
@@ -44,7 +47,7 @@ const mutations = {
     state.mods = 0
   },
   INIT_CANVAS: state => {
-    state.data = new fabric.Canvas('canvas')
+    state.data = new fabric.Canvas('canvas', { maxFingers: 1 })
     state.data.isDrawingMode = true
     state.isWritable = true
     state.data.freeDrawingBrush.width = 4
@@ -81,6 +84,16 @@ const mutations = {
   CHANGE_WRITABLE: (state, boolean) => {
     state.data.isDrawingMode = boolean
     state.isWritable = boolean
+  },
+  NEW_TEXT: state => {
+    const textbox = new fabric.Textbox('Thank you!', {
+      left: 50,
+      top: 50,
+      width: 150,
+      fontSize: 20
+    })
+    state.data.add(textbox).setActiveObject(textbox)
+    state.data.isDrawingMode = false
   }
 }
 

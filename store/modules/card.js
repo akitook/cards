@@ -4,18 +4,18 @@ const state = {
   id: '0000',
   template: {
     id: '0000',
-    category: 'seasonal'
+    category: 'seasonal',
+    bg: 0
   },
   isFlipped: false,
   isReady: false,
   isSend: false,
   zoom: {
     scale: 1,
-    x: 50,
-    y: 50
+    x: null,
+    y: null
   },
-  isShowZoomWindow: false,
-  isShowGrid: false
+  isShowZoomWindow: false
 }
 
 const getters = {
@@ -51,11 +51,14 @@ const actions = {
   zoom({ commit }, { scale, x, y }) {
     commit('ZOOM', { scale, x, y })
   },
+  zoomOut({ commit, getters }) {
+    commit('ZOOM_OUT', { getters })
+  },
   showZoomWindow({ commit }, boolean) {
     commit('SHOW_ZOOM_WINDOW', boolean)
   },
-  showGrid({ commit }, boolean) {
-    commit('SHOW_GRID', boolean)
+  switchBg({ commit }) {
+    commit('SWITCH_BG')
   },
   setCardData({ dispatch, commit }, cardData) {
     commit('SET_CARD_DATA', cardData)
@@ -105,15 +108,22 @@ const mutations = {
     state.zoom.x = x
     state.zoom.y = y
   },
+  ZOOM_OUT: (state, { getters }) => {
+    state.zoom.scale = 1
+    state.zoom.x = getters.getCardSize.width / 2
+    state.zoom.y = getters.getCardSize.height / 2
+  },
   SHOW_ZOOM_WINDOW: (state, boolean) => {
     boolean === 'toggle'
       ? (state.isShowZoomWindow = !state.isShowZoomWindow)
       : (state.isShowZoomWindow = boolean)
   },
-  SHOW_GRID: (state, boolean) => {
-    boolean === 'toggle'
-      ? (state.isShowGrid = !state.isShowGrid)
-      : (state.isShowGrid = boolean)
+  SWITCH_BG: state => {
+    if (state.template.bg < 5) {
+      state.template.bg = state.template.bg + 1
+    } else {
+      state.template.bg = 0
+    }
   },
   SET_CARD_DATA: (state, res) => {
     state.template = res
