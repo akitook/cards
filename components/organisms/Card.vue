@@ -1,6 +1,5 @@
 <template>
   <div
-    v-hammer:pinch="e => pinch(e)"
     :class="{ flipped: isFlipped, ready: isReadySend, send: isSend }"
     class="card-container"
     :style="styles"

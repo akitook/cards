@@ -39,7 +39,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vue2-hammer'],
+  plugins: [],
 
   /*
    ** Nuxt.js modules

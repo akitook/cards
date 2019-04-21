@@ -5,7 +5,8 @@ const state = {
   data: '',
   history: [],
   mods: 0,
-  isWritable: null
+  isWritable: null,
+  isDrawingMode: null
 }
 
 const getters = {}
@@ -34,6 +35,9 @@ const actions = {
   },
   newText({ commit }) {
     commit('NEW_TEXT')
+  },
+  toggleDrawing({ commit }) {
+    commit('TOGGLE_DRAWING')
   }
 }
 
@@ -49,6 +53,7 @@ const mutations = {
   INIT_CANVAS: state => {
     state.data = new fabric.Canvas('canvas', { maxFingers: 1 })
     state.data.isDrawingMode = true
+    state.isDrawingMode = true
     state.isWritable = true
     state.data.freeDrawingBrush.width = 4
     state.data.freeDrawingBrush.color = '#333'
@@ -83,7 +88,12 @@ const mutations = {
   },
   CHANGE_WRITABLE: (state, boolean) => {
     state.data.isDrawingMode = boolean
+    state.isDrawingMode = boolean
     state.isWritable = boolean
+  },
+  TOGGLE_DRAWING: state => {
+    state.data.isDrawingMode = !state.data.isDrawingMode
+    state.isDrawingMode = !state.isDrawingMode
   },
   NEW_TEXT: state => {
     const textbox = new fabric.Textbox('Thank you!', {
@@ -94,6 +104,7 @@ const mutations = {
     })
     state.data.add(textbox).setActiveObject(textbox)
     state.data.isDrawingMode = false
+    state.isDrawingMode = false
   }
 }
 

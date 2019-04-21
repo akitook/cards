@@ -42,10 +42,21 @@ export default {
     },
     copyURL() {
       if (process.client) {
-        const copyTarget = document.getElementById('url')
-        copyTarget.select()
-        document.execCommand('Copy')
-        alert('Copied: ' + this.cardUrl)
+        const codeToCopy = document.querySelector('#url')
+        codeToCopy.setAttribute('type', 'text')
+        codeToCopy.select()
+
+        try {
+          const successful = document.execCommand('copy')
+          const msg = successful ? 'successful' : 'unsuccessful'
+          alert('Testing code was copied ' + msg)
+        } catch (err) {
+          alert('Oops, unable to copy')
+        }
+
+        /* unselect the range */
+        codeToCopy.setAttribute('type', 'hidden')
+        window.getSelection().removeAllRanges()
       }
     }
   }

@@ -12,6 +12,34 @@
         />
       </svg>
     </IconButton>
+    <IconButton
+      v-if="canvas.isDrawingMode"
+      text="select mode"
+      @action="toggleDrawing"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M18.536 7.555c-1.188-.252-4.606-.904-5.536-1.088v-3.512c0-1.629-1.346-2.955-3-2.955s-3 1.326-3 2.955v7.457c-.554-.336-1.188-.621-1.838-.715-1.822-.262-3.162.94-3.162 2.498 0 .805.363 1.613 1.022 2.271 3.972 3.972 5.688 5.125 6.059 9.534h9.919v-1.748c0-5.154 3-6.031 3-10.029 0-2.448-1.061-4.157-3.464-4.668zm.357 8.022c-.821 1.483-1.838 3.319-1.891 6.423h-6.13c-.726-3.82-3.81-6.318-6.436-8.949-.688-.686-.393-1.37.442-1.373 1.263-.006 3.06 1.884 4.122 3.205v-11.928c0-.517.458-.955 1-.955s1 .438 1 .955v6.948c0 .315.256.571.572.571.314 0 .57-.256.57-.571v-.575c0-.534.49-.938 1.014-.833.398.079.686.428.686.833v1.273c0 .315.256.571.571.571s.571-.256.571-.571v-.83c0-.531.487-.932 1.008-.828.396.078.682.424.682.828v1.533c0 .315.256.571.571.571s.571-.256.571-.571v-.912c0-.523.545-.867 1.018-.646.645.305 1.166.932 1.166 2.477 0 1.355-.465 2.193-1.107 3.354z"
+        />
+      </svg>
+    </IconButton>
+    <IconButton v-else text="drawing mode" @action="toggleDrawing">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M18.308 0l-16.87 16.873-1.436 7.127 7.125-1.437 16.872-16.875-5.691-5.688zm-15.751 21.444l.723-3.585 12.239-12.241 2.861 2.862-12.239 12.241-3.584.723zm17.237-14.378l-2.861-2.862 1.377-1.377 2.861 2.861-1.377 1.378z"
+        />
+      </svg>
+    </IconButton>
     <IconButton text="text" @action="newText">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -25,31 +53,11 @@
       </svg>
     </IconButton>
     <iconButton text="ground" @action="switchBg">
-      <svg
-        width="14"
-        height="14"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      >
-        <path
-          d="M22 0c1.104 0 2 .896 2 2v20c0 1.104-.896 2-2 2h-20c-1.104 0-2-.896-2-2v-20c0-1.104.896-2 2-2h20zm0 2.75c0-.413-.335-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75v18.5c0 .415.337.75.75.75h18.5c.414 0 .75-.336.75-.75v-18.5z"
-        />
-      </svg>
+      <div
+        class="bgIcon"
+        :class="`type-${card.template.bg ? card.template.bg + 1 : 0}`"
+      />
     </iconButton>
-    <IconButton text="zoom" @action="showZoomWindow">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"
-        />
-      </svg>
-    </IconButton>
     <IconButton text="undo" @action="undoCanvas">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +74,8 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 import CardZoom from '~/components/organisms/CardZoom.vue'
 import IconButton from '~/components/atoms/IconButton.vue'
 
@@ -74,6 +84,9 @@ export default {
     IconButton,
     CardZoom
   },
+  computed: {
+    ...mapState(['card', 'canvas'])
+  },
   methods: {
     clearCanvas() {
       this.$store.dispatch('canvas/clear')
@@ -81,9 +94,14 @@ export default {
     undoCanvas() {
       this.$store.dispatch('canvas/undo')
     },
+    toggleDrawing() {
+      this.$store.dispatch('canvas/toggleDrawing')
+    },
+    /*
     showZoomWindow() {
       this.$store.dispatch('card/showZoomWindow', 'toggle')
     },
+    */
     switchBg() {
       this.$store.dispatch('card/switchBg')
     },
@@ -100,5 +118,27 @@ export default {
   align-items: center;
   margin-left: auto;
   transition: all 0.4s 0.6s;
+  .bgIcon {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    background-size: contain;
+
+    &.type-0 {
+    }
+    &.type-2 {
+      background: url('~assets/img/bg/linedpaper_@2x.png') center center;
+    }
+    &.type-3 {
+      background: url('~assets/img/bg/exclusive_paper_@2x.png') center center;
+    }
+    &.type-4 {
+      background: url('~assets/img/bg/handmadepaper_@2x.png') center center;
+    }
+    &.type-5 {
+      background: url('~assets/img/bg/hip-square.png') center center;
+    }
+  }
 }
 </style>
