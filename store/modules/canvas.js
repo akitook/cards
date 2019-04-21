@@ -1,4 +1,4 @@
-import { fabric } from 'fabric/dist/fabric-custom'
+import { fabric } from 'fabric'
 
 const state = {
   counter: 0,
@@ -59,8 +59,14 @@ const mutations = {
     state.data.freeDrawingBrush.color = '#333'
   },
   LOAD_CANVAS: (state, canvas) => {
+    if (!state.data) {
+      state.data = new fabric.Canvas('canvas', { maxFingers: 1 })
+    }
     state.data.clear()
     state.data.loadFromJSON(canvas)
+    state.data.getObjects().forEach(function(object) {
+      object.selectable = false
+    })
   },
   SET_HISTORY: state => {
     state.history.push(JSON.stringify(state.data))

@@ -83,7 +83,6 @@ export default {
     transform-origin 0.5s, width 0.7s ease-in-out, height 0.7s ease-in-out,
     margin 0.7s ease-in-out, box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;
-  border-radius: 16px;
   animation-duration: 1s;
   z-index: 999;
   &.flipped {

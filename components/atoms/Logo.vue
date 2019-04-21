@@ -29,7 +29,7 @@
   left: calc(50% - 40px);
   width: 80px;
   height: auto;
-  transition: all 0.4s 0.1s;
+  transition: all 0.4s 0.2s, width 0.4s 1s;
   &.small {
     width: 60px;
     top: 20px;

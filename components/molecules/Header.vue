@@ -1,10 +1,13 @@
 <template>
   <div class="header" :class="{ flex: canvas.isWritable }">
     <div class="logo-wrapper">
-      <Logo :class="{ small: this.$route.name !== 'index' }" />
+      <Logo :class="{ small: this.$route.name === 'message' }" />
     </div>
     <CardSelector v-if="this.$route.name === 'index'" />
     <CanvasActions v-if="canvas.isWritable" />
+    <div v-if="message" class="message">
+      {{ message }}
+    </div>
   </div>
 </template>
 <script>
@@ -20,7 +23,16 @@ export default {
     CanvasActions
   },
   computed: {
-    ...mapState(['canvas'])
+    ...mapState(['card', 'canvas']),
+    message() {
+      let message = null
+      if (this.$route.name === 'send' && !this.card.isSend) {
+        message = 'Tap your card to post.'
+      } else if (this.$route.name === 'card') {
+        message = 'Tap to flip this card.'
+      }
+      return message
+    }
   }
 }
 </script>
@@ -41,6 +53,10 @@ export default {
       height: auto;
       padding: 0;
     }
+  }
+  .message {
+    font-family: $font-1;
+    font-size: 20px;
   }
 }
 </style>

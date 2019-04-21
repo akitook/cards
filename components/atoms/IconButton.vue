@@ -31,6 +31,12 @@ export default {
       fill: $red-500;
     }
   }
+  &.gray {
+    color: $dark-087;
+    path {
+      fill: $dark-087;
+    }
+  }
   svg {
     display: block;
     margin: 0 auto;

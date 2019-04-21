@@ -121,7 +121,7 @@ export default {
   .bgIcon {
     width: 14px;
     height: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid #000;
     margin: 0 auto;
     background-size: contain;
 

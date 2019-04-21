@@ -37,8 +37,7 @@ body {
 }
 
 .container {
+  position: relative;
   height: 100vh;
-  background: url('~assets/img/bg/bg.png') center center;
-  background-size: cover;
 }
 </style>
