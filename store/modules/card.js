@@ -120,9 +120,15 @@ const mutations = {
   },
   SWITCH_BG: state => {
     if (state.template.bg < 5) {
-      state.template.bg = state.template.bg + 1
+      state.template = {
+        ...state.template,
+        bg: state.template.bg + 1
+      }
     } else {
-      state.template.bg = 0
+      state.template = {
+        ...state.template,
+        bg: 0
+      }
     }
   },
   SET_CARD_DATA: (state, res) => {

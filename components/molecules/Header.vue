@@ -38,6 +38,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .header {
+  position: relative;
   text-align: center;
   .logo-wrapper {
     width: 100%;

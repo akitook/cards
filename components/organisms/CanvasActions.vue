@@ -52,7 +52,7 @@
         />
       </svg>
     </IconButton>
-    <iconButton text="ground" @action="switchBg">
+    <iconButton text="paper" @action="switchBg">
       <div
         class="bgIcon"
         :class="`type-${card.template.bg ? card.template.bg + 1 : 0}`"

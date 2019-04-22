@@ -4,7 +4,7 @@
       <p>Copy this URL below and send it.</p>
       <input id="url" type="text" :value="cardUrl" readonly />
       <Button @action="copyURL">{{ isCopy ? 'copied!' : 'copy URL' }}</Button>
-      <p class="or">or...</p>
+      <p class="or">or send it by your account</p>
       <div class="button-container">
         <TweetButton :url="cardUrl" tweet="Send this card for you." />
         <LineButton :url="cardUrl" tweet="Send this card for you." />
@@ -59,15 +59,10 @@ export default {
     copyURL() {
       if (process.client) {
         const codeToCopy = document.querySelector('#url')
-        codeToCopy.setAttribute('type', 'text')
-        codeToCopy.select()
-
-        try {
-          document.execCommand('copy')
-          console.log('Success copy URL: ' + this.cardUrl)
-        } catch (err) {
-          alert('Oops, unable to copy')
-        }
+        const range = document.createRange()
+        range.selectNode(codeToCopy)
+        window.getSelection().addRange(range)
+        document.execCommand('copy')
 
         /* unselect the range */
         window.getSelection().removeAllRanges()

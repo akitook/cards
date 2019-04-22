@@ -63,6 +63,7 @@ const mutations = {
       state.data = new fabric.Canvas('canvas', { maxFingers: 1 })
     }
     state.data.clear()
+    state.data.isWritable = false
     state.data.loadFromJSON(canvas)
     state.data.getObjects().forEach(function(object) {
       object.selectable = false
@@ -105,7 +106,7 @@ const mutations = {
     const textbox = new fabric.Textbox('Thank you!', {
       left: 50,
       top: 50,
-      width: 150,
+      width: 100,
       fontSize: 20
     })
     state.data.add(textbox).setActiveObject(textbox)

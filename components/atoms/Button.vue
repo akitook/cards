@@ -24,6 +24,9 @@ export default {
   border: 2px solid $dark-054;
   border-radius: 0.4em 2em 0.5em 3em/3em 0.5em 2em 0.5em;
   color: $dark-087;
+  &:hover {
+    cursor: pointer;
+  }
   a {
     color: $dark-087;
     text-decoration: none;
