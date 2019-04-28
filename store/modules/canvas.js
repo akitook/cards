@@ -64,10 +64,21 @@ const mutations = {
     }
     state.data.clear()
     state.data.isWritable = false
-    state.data.loadFromJSON(canvas)
+    state.data.loadFromJSON(
+      canvas,
+      state.data.renderAll.bind(state.data),
+      (o, object) => {
+        console.log(o, object)
+        const rate = 300 / 400
+        object.scale(o.scaleX * rate, o.scaleY * rate)
+        object.set('top', o.top * rate)
+        object.set('left', o.left * rate)
+      }
+    )
     state.data.getObjects().forEach(function(object) {
       object.selectable = false
     })
+    state.data.renderAll()
   },
   SET_HISTORY: state => {
     state.history.push(JSON.stringify(state.data))
