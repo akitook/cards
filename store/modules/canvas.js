@@ -12,8 +12,9 @@ const state = {
 const getters = {}
 
 const actions = {
-  load({ commit }, canvas) {
-    commit('LOAD_CANVAS', canvas)
+  load({ commit }, loadData) {
+    console.log(loadData)
+    commit('LOAD_CANVAS', loadData)
   },
   change({ commit }) {
     commit('SET_HISTORY')
@@ -58,18 +59,18 @@ const mutations = {
     state.data.freeDrawingBrush.width = 4
     state.data.freeDrawingBrush.color = '#333'
   },
-  LOAD_CANVAS: (state, canvas) => {
+  LOAD_CANVAS: (state, loadData) => {
     if (!state.data) {
       state.data = new fabric.Canvas('canvas', { maxFingers: 1 })
     }
     state.data.clear()
     state.data.isWritable = false
     state.data.loadFromJSON(
-      canvas,
+      loadData.data.canvas,
       state.data.renderAll.bind(state.data),
       (o, object) => {
-        console.log(o, object)
-        const rate = 300 / 400
+        // rate = load先のcardsize / 作成時のcardsize
+        const rate = loadData.canvasSize.width / loadData.data.size.width
         object.scale(o.scaleX * rate, o.scaleY * rate)
         object.set('top', o.top * rate)
         object.set('left', o.left * rate)

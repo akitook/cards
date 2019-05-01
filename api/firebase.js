@@ -3,21 +3,18 @@ import firebase from '~/plugins/firebase'
 const firestore = firebase.firestore()
 
 export default {
-  postCard(template, canvasData) {
-    console.log(canvasData)
+  postCard(template, canvasData, cardSize) {
     return new Promise((resolve, reject) => {
       const created = firebase.firestore.FieldValue.serverTimestamp()
       const ref = firestore.collection('cards').doc()
-      console.log(ref)
       const docId = ref.id
-      console.log(docId)
-
       const postContent = {
         id: docId,
         authorId: '0000',
         canvas: JSON.parse(JSON.stringify(canvasData)),
         template: template,
-        created: created
+        created: created,
+        size: cardSize
       }
       ref
         .set(postContent)

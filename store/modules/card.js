@@ -57,6 +57,9 @@ const actions = {
   showZoomWindow({ commit }, boolean) {
     commit('SHOW_ZOOM_WINDOW', boolean)
   },
+  randomBg({ commit }) {
+    commit('RANDOM_BG')
+  },
   switchBg({ commit }) {
     commit('SWITCH_BG')
   },
@@ -67,10 +70,10 @@ const actions = {
   changeReady({ commit }, boolean) {
     commit('CHANGE_READY', boolean)
   },
-  send({ dispatch, commit }, canvasData) {
+  send({ dispatch, commit, getters }, canvasData) {
     commit('START_SEND_CARD')
     firebase
-      .postCard(state.template, canvasData)
+      .postCard(state.template, canvasData, getters.getCardSize)
       .then(res => {
         commit('SUCCESS_SEND_CARD', res)
       })
@@ -82,13 +85,17 @@ const actions = {
   clearAll({ dispatch, commit }) {
     commit('CLEAR_ALL')
   },
-  fetchCardById({ dispatch, commit }, id) {
+  fetchCardById({ dispatch, commit, getters }, id) {
     commit('START_FETCH_CARD')
     firebase
       .fetchCardById(id)
       .then(res => {
         commit('SUCCESS_FETCH_CARD', res)
-        dispatch('canvas/load', res.canvas, { root: true })
+        const loadData = {
+          data: res,
+          canvasSize: getters.getCardSize
+        }
+        dispatch('canvas/load', loadData, { root: true })
       })
       .catch(err => {
         console.log(err)
@@ -117,6 +124,13 @@ const mutations = {
     boolean === 'toggle'
       ? (state.isShowZoomWindow = !state.isShowZoomWindow)
       : (state.isShowZoomWindow = boolean)
+  },
+  RANDOM_BG: state => {
+    const randomNum = Math.floor(Math.random() * 4)
+    state.template = {
+      ...state.template,
+      bg: randomNum
+    }
   },
   SWITCH_BG: state => {
     if (state.template.bg < 5) {

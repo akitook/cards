@@ -3,7 +3,9 @@
     <div class="link-container" :class="{ isShow: card.isSend }">
       <p>Copy this URL below and send it.</p>
       <input id="url" type="text" :value="cardUrl" readonly />
-      <Button @action="copyURL">{{ isCopy ? 'copied!' : 'copy URL' }}</Button>
+      <Button v-clipboard:copy="cardUrl" v-clipboard:success="copyURL">{{
+        isCopy ? 'copied!' : 'copy URL'
+      }}</Button>
       <p class="or">or send it by your account</p>
       <div class="button-container">
         <TweetButton :url="cardUrl" tweet="Send this card for you." />
@@ -57,6 +59,8 @@ export default {
       this.$router.push('/')
     },
     copyURL() {
+      this.isCopy = true
+      /*
       if (process.client) {
         const codeToCopy = document.querySelector('#url')
         const range = document.createRange()
@@ -64,10 +68,10 @@ export default {
         window.getSelection().addRange(range)
         document.execCommand('copy')
 
-        /* unselect the range */
         window.getSelection().removeAllRanges()
         this.isCopy = true
       }
+      */
     }
   }
 }
