@@ -23,7 +23,9 @@ const getters = {
     return `https://cards.hauer.jp/card?id=${state.id}`
   },
   cardFrontUrl: state => {
-    return `/templates/${state.template.category}/${state.template.id}.png`
+    return `/templates/${state.template.category}/${
+      state.template.title
+    }@2x.jpg`
   },
   isFlipped: state => {
     return state.isFlipped

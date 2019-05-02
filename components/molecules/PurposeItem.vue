@@ -9,6 +9,7 @@
       <ThankYou v-if="data.id === 'thankyou'" />
       <Wedding v-if="data.id === 'wedding'" />
       <WorkPlace v-if="data.id === 'workplace'" />
+      <Other v-if="data.id === 'other'" />
     </div>
     <div class="title">{{ data.title }}</div>
   </div>
@@ -22,6 +23,7 @@ import Birthday from '~/components/atoms/icons/Birthday'
 import ThankYou from '~/components/atoms/icons/ThankYou'
 import Wedding from '~/components/atoms/icons/Wedding'
 import WorkPlace from '~/components/atoms/icons/WorkPlace'
+import Other from '~/components/atoms/icons/Other'
 
 export default {
   components: {
@@ -32,7 +34,8 @@ export default {
     Birthday,
     ThankYou,
     Wedding,
-    WorkPlace
+    WorkPlace,
+    Other
   },
   props: {
     data: {

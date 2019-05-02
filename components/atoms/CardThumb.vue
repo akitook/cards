@@ -13,7 +13,8 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      return `/templates/${this.data.category}/${this.data.id}.png`
+      console.log(this.data)
+      return `/templates/${this.data.category}/${this.data.title}@0,25x.jpg`
     }
   }
 }
@@ -24,6 +25,7 @@ export default {
   box-shadow: 0 0 4px 0 rgba(14, 19, 24, 0.15);
   border-radius: 4px;
   margin: 8px;
+  line-height: 0;
   transition: all 0.2s;
   &.selected {
     transform: scale(1.2);

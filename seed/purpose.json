@@ -20,15 +20,7 @@
     "title": "Congratulations"
   },
   {
-    "id": "wedding",
-    "title": "Wedding"
-  },
-  {
-    "id": "hellobaby",
-    "title": "HelloBaby"
-  },
-  {
-    "id": "workplace",
-    "title": "WorkPlace"
+    "id": "other",
+    "title": "Other"
   }
 ]
