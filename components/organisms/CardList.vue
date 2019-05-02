@@ -39,6 +39,7 @@ export default {
     display: flex;
     align-items: flex-end;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     padding: 0 16px;
 
