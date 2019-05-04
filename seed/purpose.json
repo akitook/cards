@@ -1,26 +1,33 @@
 [
   {
     "id": "seasonal",
-    "title": "Seasonal"
+    "title": "Seasonal",
+    "number": "00"
   },
   {
-    "id": "birthday",
-    "title": "Birthday"
-  },
-  {
-    "id": "thankyou",
-    "title": "ThankYou"
-  },
-  {
-    "id": "love",
-    "title": "Love"
+    "id": "flower",
+    "title": "Flower",
+    "number": "01"
   },
   {
     "id": "congratulations",
-    "title": "Congratulations"
+    "title": "Congratulations",
+    "number": "03"
+  },
+  {
+    "id": "thankyou",
+    "title": "ThankYou",
+    "number": "04"
+
+  },
+  {
+    "id": "love",
+    "title": "Love",
+    "number": "02"
   },
   {
     "id": "other",
-    "title": "Other"
+    "title": "Other",
+    "number": "05"
   }
 ]

@@ -5,6 +5,7 @@
         v-for="(data, index) in purposes"
         :key="index"
         :data="data"
+        @select="selectCategory(data)"
       />
     </div>
   </div>
@@ -19,6 +20,12 @@ export default {
   data() {
     return {
       purposes: purposeData
+    }
+  },
+  methods: {
+    selectCategory(data) {
+      this.$store.dispatch('cards/setCategory', data)
+      this.$store.dispatch('card/setCategory', data)
     }
   }
 }

@@ -53,7 +53,6 @@ export default {
     sendCard() {
       if (this.isReadySend) {
         const canvasData = JSON.stringify(this.canvas.data.toJSON())
-        console.log(canvasData)
         this.$store.dispatch('card/send', canvasData)
       }
     },
@@ -73,7 +72,7 @@ export default {
   max-width: var(--width);
   height: var(--height);
   max-height: var(--height);
-  margin: -70px auto;
+  margin: -52px auto;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   transform-style: preserve-3d;
   -webkit-transform-origin: var(--originX) var(--originY);

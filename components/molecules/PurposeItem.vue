@@ -1,14 +1,11 @@
 <template>
-  <div class="PurposeItem">
+  <div class="PurposeItem" @click="$emit('select')">
     <div class="icon">
       <Seasonal v-if="data.id === 'seasonal'" />
+      <Flower v-if="data.id === 'flower'" />
       <Congratulations v-if="data.id === 'congratulations'" />
-      <HelloBaby v-if="data.id === 'hellobaby'" />
       <Love v-if="data.id === 'love'" />
-      <Birthday v-if="data.id === 'birthday'" />
       <ThankYou v-if="data.id === 'thankyou'" />
-      <Wedding v-if="data.id === 'wedding'" />
-      <WorkPlace v-if="data.id === 'workplace'" />
       <Other v-if="data.id === 'other'" />
     </div>
     <div class="title">{{ data.title }}</div>
@@ -17,24 +14,18 @@
 <script>
 import Seasonal from '~/components/atoms/icons/Seasonal'
 import Congratulations from '~/components/atoms/icons/Congratulations'
-import HelloBaby from '~/components/atoms/icons/HelloBaby'
+import Flower from '~/components/atoms/icons/Flower'
 import Love from '~/components/atoms/icons/Love'
-import Birthday from '~/components/atoms/icons/Birthday'
 import ThankYou from '~/components/atoms/icons/ThankYou'
-import Wedding from '~/components/atoms/icons/Wedding'
-import WorkPlace from '~/components/atoms/icons/WorkPlace'
 import Other from '~/components/atoms/icons/Other'
 
 export default {
   components: {
     Seasonal,
     Congratulations,
-    HelloBaby,
+    Flower,
     Love,
-    Birthday,
     ThankYou,
-    Wedding,
-    WorkPlace,
     Other
   },
   props: {

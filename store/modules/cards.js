@@ -1,11 +1,17 @@
 import seedCardsData from '../../seed/cards'
 const state = {
   isFetching: false,
-  records: null,
+  records: seedCardsData,
   category: 'seasonal'
 }
 
-const getters = {}
+const getters = {
+  categoryCardList: state => {
+    return seedCardsData.filter(function(e) {
+      return e.category === state.category
+    })
+  }
+}
 
 const actions = {
   fetchCards({ dispatch, commit }) {
@@ -22,6 +28,9 @@ const actions = {
         commit('FAILED_FETCH_CARDS')
       })
       */
+  },
+  setCategory({ commit }, data) {
+    commit('SET_CATEGORY', data)
   }
 }
 
@@ -41,6 +50,9 @@ const mutations = {
   },
   CLEAR_CARDS: state => {
     state.records = []
+  },
+  SET_CATEGORY: (state, data) => {
+    state.category = data.id
   }
 }
 

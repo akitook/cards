@@ -1,10 +1,11 @@
 import firebase from '../../api/firebase'
 
 const state = {
-  id: '0000',
+  id: '0001',
   template: {
-    id: '0000',
+    id: '0001',
     category: 'seasonal',
+    title: 'seasonal01',
     bg: 0
   },
   isFlipped: false,
@@ -64,6 +65,9 @@ const actions = {
   },
   switchBg({ commit }) {
     commit('SWITCH_BG')
+  },
+  setCategory({ dispatch, commit }, categoryData) {
+    commit('SET_CATEGORY', categoryData)
   },
   setCardData({ dispatch, commit }, cardData) {
     commit('SET_CARD_DATA', cardData)
@@ -145,6 +149,16 @@ const mutations = {
         ...state.template,
         bg: 0
       }
+    }
+  },
+  SET_CATEGORY: (state, res) => {
+    const id = res.number + '01'
+    const title = res.id + '01'
+    state.template = {
+      ...state.template,
+      id: id,
+      title: title,
+      category: res.id
     }
   },
   SET_CARD_DATA: (state, res) => {

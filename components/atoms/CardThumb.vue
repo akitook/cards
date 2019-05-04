@@ -13,7 +13,6 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      console.log(this.data)
       return `/templates/${this.data.category}/${this.data.title}@0,25x.jpg`
     }
   }
@@ -21,18 +20,20 @@ export default {
 </script>
 <style scoped lang="scss">
 .CardThumb {
-  width: 32px;
+  flex: 0 0;
+  display: table-cell;
   box-shadow: 0 0 4px 0 rgba(14, 19, 24, 0.15);
-  border-radius: 4px;
-  margin: 8px;
-  line-height: 0;
+  border-collapse: separate;
+  border-spacing: 2px 0;
   transition: all 0.2s;
+  line-height: 0;
   &.selected {
     transform: scale(1.2);
     box-shadow: 0 0 12px 0 rgba(14, 19, 24, 0.15);
   }
   img {
-    max-width: 100%;
+    width: 32px;
+    height: 44.4px;
   }
 }
 </style>
