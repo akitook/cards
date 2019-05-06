@@ -5,12 +5,14 @@
         v-for="(data, index) in purposes"
         :key="index"
         :data="data"
+        :selected="cards.category"
         @select="selectCategory(data)"
       />
     </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import PurposeItem from '~/components/molecules/PurposeItem'
 import purposeData from '~/seed/purpose.json'
 export default {
@@ -21,6 +23,9 @@ export default {
     return {
       purposes: purposeData
     }
+  },
+  computed: {
+    ...mapState(['cards'])
   },
   methods: {
     selectCategory(data) {

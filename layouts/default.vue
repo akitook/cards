@@ -20,8 +20,9 @@ export default {
 </script>
 <style scoped lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: '游ゴシック Medium', YuGothic, YuGothicM,
+    'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
+    sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -45,7 +46,7 @@ body {
 }
 
 .container {
-  max-width: 580px;
+  width: 100%;
   height: 100vh;
   margin: 0 auto;
   overflow-x: hidden;

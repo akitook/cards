@@ -27,6 +27,7 @@ export default {
   color: $dark-087;
   &.red {
     color: $red-500;
+    background-color: transparent !important;
     path {
       fill: $red-500;
     }

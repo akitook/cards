@@ -83,7 +83,7 @@ export default {
     margin 0.7s ease-in-out, box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;
   animation-duration: 1s;
-  z-index: 999;
+  z-index: 10;
   &.flipped {
     margin: 0 auto;
     transform: rotateX(180deg) scale(var(--scale));
@@ -92,90 +92,6 @@ export default {
   &.ready {
     margin: 0 auto;
     transform: rotateX(0deg) scale(0.7);
-    @-webkit-keyframes bounce {
-      from,
-      6%,
-      18%,
-      26%,
-      to {
-        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
-
-      13%,
-      15% {
-        -webkit-animation-timing-function: cubic-bezier(
-          0.755,
-          0.05,
-          0.855,
-          0.06
-        );
-        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-        -webkit-transform: translate3d(0, -20px, 0);
-        transform: translate3d(0, -20px, 0);
-      }
-
-      26% {
-        -webkit-animation-timing-function: cubic-bezier(
-          0.755,
-          0.05,
-          0.855,
-          0.06
-        );
-        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-        -webkit-transform: translate3d(0, -10px, 0);
-        transform: translate3d(0, -10px, 0);
-      }
-
-      30% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
-    }
-    @keyframes bounce {
-      from,
-      6%,
-      18%,
-      26%,
-      to {
-        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        -webkit-transform: translate3d(0, 0, 0) scale(0.7);
-        transform: translate3d(0, 0, 0) scale(0.7);
-      }
-
-      13%,
-      15% {
-        -webkit-animation-timing-function: cubic-bezier(
-          0.755,
-          0.05,
-          0.855,
-          0.06
-        );
-        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-        -webkit-transform: translate3d(0, -20px, 0) scale(0.7);
-        transform: translate3d(0, -20px, 0) scale(0.7);
-      }
-
-      26% {
-        -webkit-animation-timing-function: cubic-bezier(
-          0.755,
-          0.05,
-          0.855,
-          0.06
-        );
-        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-        -webkit-transform: translate3d(0, -10px, 0) scale(0.7);
-        transform: translate3d(0, -10px, 0) scale(0.7);
-      }
-
-      30% {
-        -webkit-transform: translate3d(0, 0, 0) scale(0.7);
-        transform: translate3d(0, 0, 0) scale(0.7);
-      }
-    }
     @keyframes yurayura {
       0% {
         transform: translate3d(0, 0, 0) scale(0.7);
@@ -185,17 +101,6 @@ export default {
       }
       100% {
         transform: translate3d(0, 0, 0) scale(0.7);
-      }
-    }
-    @keyframes guruguru {
-      0% {
-        transform: rotate3d(0.2, 1, 0, 180deg) scale(0.7);
-      }
-      50% {
-        transform: rotate3d(0.2, 1, 0, 00deg) scale(0.7);
-      }
-      100% {
-        transform: rotate3d(0.2, 1, 0, 180deg) scale(0.7);
       }
     }
     animation: yurayura 4s infinite 2s;

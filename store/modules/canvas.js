@@ -115,10 +115,10 @@ const mutations = {
     state.isDrawingMode = !state.isDrawingMode
   },
   NEW_TEXT: state => {
-    const textbox = new fabric.Textbox('Thank you!', {
+    const textbox = new fabric.Textbox('Tap and Type.', {
       left: 50,
       top: 50,
-      width: 100,
+      width: 120,
       fontSize: 20
     })
     state.data.add(textbox).setActiveObject(textbox)

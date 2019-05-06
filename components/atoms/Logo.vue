@@ -30,6 +30,7 @@
   width: 80px;
   height: auto;
   transition: all 0.4s 0.2s, width 0.4s 1s;
+  transform-origin: center center;
   &.small {
     width: 60px;
     top: 20px;

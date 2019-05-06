@@ -1,18 +1,20 @@
 <template>
-  <div class="ShowCard">
-    <div
-      :class="{ flipped: isFlipped }"
-      :style="styles"
-      class="card-container"
-      @click="flipCard"
-    >
-      <CardFront :url="cardFrontUrl" />
-      <CardBack :width="getCardSize.width" :height="getCardSize.height" />
+  <transition appear name="ShowCard">
+    <div class="ShowCard">
+      <div
+        :class="{ flipped: isFlipped }"
+        :style="styles"
+        class="card-container"
+        @click="flipCard"
+      >
+        <CardFront :url="cardFrontUrl" />
+        <CardBack :width="getCardSize.width" :height="getCardSize.height" />
+      </div>
+      <Button :class="{ show: showButton }" class="button" @action="toHome">
+        reply ?
+      </Button>
     </div>
-    <Button :class="{ show: showButton }" class="button" @action="toHome">
-      reply ?
-    </Button>
-  </div>
+  </transition>
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
@@ -62,11 +64,56 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.ShowCard-enter-active,
+.ShowCard-leave-active {
+  transition: opacity 0.5s 2s;
+}
+.ShowCard-enter, .ShowCard-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .ShowCard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  animation: fadeInDown 3s forwards;
+  @-webkit-keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    20% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    20% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
 }
 .card-container {
   --width: $card-width;

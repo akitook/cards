@@ -1,12 +1,20 @@
 <template>
   <div class="PurposeItem" @click="$emit('select')">
     <div class="icon">
-      <Seasonal v-if="data.id === 'seasonal'" />
-      <Flower v-if="data.id === 'flower'" />
-      <Congratulations v-if="data.id === 'congratulations'" />
-      <Love v-if="data.id === 'love'" />
-      <ThankYou v-if="data.id === 'thankyou'" />
-      <Other v-if="data.id === 'other'" />
+      <Seasonal
+        v-if="data.id === 'seasonal'"
+        :selected="selected === 'seasonal'"
+      />
+      <Flower v-if="data.id === 'flower'" :selected="selected === 'flower'" />
+      <Congratulations
+        v-if="data.id === 'congratulations'"
+        :selected="selected === 'congratulations'"
+      />
+      <Love v-if="data.id === 'love'" :selected="selected === 'love'" />
+      <ThankYou
+        v-if="data.id === 'thankyou'"
+        :selected="selected === 'thankyou'"
+      />
     </div>
     <div class="title">{{ data.title }}</div>
   </div>
@@ -17,7 +25,6 @@ import Congratulations from '~/components/atoms/icons/Congratulations'
 import Flower from '~/components/atoms/icons/Flower'
 import Love from '~/components/atoms/icons/Love'
 import ThankYou from '~/components/atoms/icons/ThankYou'
-import Other from '~/components/atoms/icons/Other'
 
 export default {
   components: {
@@ -25,12 +32,15 @@ export default {
     Congratulations,
     Flower,
     Love,
-    ThankYou,
-    Other
+    ThankYou
   },
   props: {
     data: {
       type: Object,
+      required: true
+    },
+    selected: {
+      type: String,
       required: true
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="CardSelector">
+  <div v-if="this.$route.name === 'index'" class="CardSelector">
     <PurposeList />
     <CardList />
   </div>

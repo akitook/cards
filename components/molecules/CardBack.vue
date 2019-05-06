@@ -39,6 +39,16 @@ export default {
         if (event.e.touches && event.e.touches.length === 2) {
           console.log('multi touch')
         }
+      },
+      'text:editing:entered': e => {
+        console.log(e.target.type)
+        if (e.target.type === 'textbox') {
+          if (e.target.text === 'Tap and Type.') {
+            const obj = this.canvas.data.getActiveObject()
+            obj.selectAll()
+            obj.removeChars()
+          }
+        }
       }
     })
     // Add listener event for pinch-zoom

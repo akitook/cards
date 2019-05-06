@@ -34,7 +34,10 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['ress/ress.css', 'animate.css/animate.css'],
+  css: [
+    'ress/ress.css',
+    'animate.css/animate.css'
+  ],
 
   /*
    ** Plugins to load before mounting the App

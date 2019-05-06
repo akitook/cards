@@ -43,5 +43,15 @@ export default {
       color: $dark-054;
     }
   }
+  &.red {
+    display: inline-block;
+    color: $red-500;
+    border-color: $red-500;
+  }
+  .en {
+  }
+  .ja {
+    font-size: 13px;
+  }
 }
 </style>

@@ -81,6 +81,7 @@ const actions = {
     firebase
       .postCard(state.template, canvasData, getters.getCardSize)
       .then(res => {
+        dispatch('canvas/clear', '', { root: true })
         commit('SUCCESS_SEND_CARD', res)
       })
       .catch(err => {

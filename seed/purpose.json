@@ -11,7 +11,7 @@
   },
   {
     "id": "congratulations",
-    "title": "Congratulations",
+    "title": "Congrats",
     "number": "03"
   },
   {
@@ -24,10 +24,5 @@
     "id": "love",
     "title": "Love",
     "number": "02"
-  },
-  {
-    "id": "other",
-    "title": "Other",
-    "number": "05"
   }
 ]

@@ -3,10 +3,11 @@
     <div class="logo-wrapper">
       <Logo :class="{ small: this.$route.name === 'message' }" />
     </div>
-    <CardSelector v-if="this.$route.name === 'index'" />
-    <CanvasActions v-if="canvas.isWritable" />
+    <CardSelector />
+    <CanvasActions />
     <div v-if="message" class="message">
-      {{ message }}
+      <div class="en">{{ message.en }}</div>
+      <div class="ja">{{ message.ja }}</div>
     </div>
   </div>
 </template>
@@ -27,9 +28,15 @@ export default {
     message() {
       let message = null
       if (this.$route.name === 'send' && !this.card.isSend) {
-        message = 'Tap your card to post.'
+        message = {
+          en: 'Tap your card to post.',
+          ja: '準備ができたらカードをタップ'
+        }
       } else if (this.$route.name === 'card') {
-        message = 'Tap to flip this card.'
+        message = {
+          en: 'Tap to flip this card.',
+          ja: 'カードをタップ'
+        }
       }
       return message
     }
@@ -39,6 +46,8 @@ export default {
 <style scoped lang="scss">
 .header {
   position: relative;
+  max-width: 580px;
+  margin: 0 auto;
   text-align: center;
   .logo-wrapper {
     width: 100%;
@@ -58,6 +67,12 @@ export default {
   .message {
     font-family: $font-1;
     font-size: 20px;
+    .en {
+    }
+    .ja {
+      font-size: 12px;
+      color: $dark-054;
+    }
   }
 }
 </style>

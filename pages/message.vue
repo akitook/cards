@@ -4,7 +4,8 @@
       back
     </Button>
     <Button v-if="canvas.history.length > 0" @action="toSend">
-      next
+      <span class="en">next: </span>
+      <span class="ja">送信画面へ</span>
     </Button>
   </section>
 </template>

@@ -52,20 +52,20 @@ export default {
     width: 100%;
     height: 100%;
     &.type-0 {
+      background: url('~assets/img/bg/exclusive_paper_@2x.png') center center;
+      background-size: cover;
     }
     &.type-2 {
       background: url('~assets/img/bg/linedpaper_@2x.png') center center;
       background-size: cover;
     }
     &.type-3 {
-      background: url('~assets/img/bg/exclusive_paper_@2x.png') center center;
-      background-size: cover;
-    }
-    &.type-4 {
       background: url('~assets/img/bg/handmadepaper_@2x.png') center center;
     }
-    &.type-5 {
+    &.type-4 {
       background: url('~assets/img/bg/hip-square.png') center center;
+    }
+    &.type-5 {
     }
   }
 }

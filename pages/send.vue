@@ -1,12 +1,23 @@
 <template>
   <section class="page-container">
     <div class="link-container" :class="{ isShow: card.isSend }">
-      <p>Copy this URL below and send it.</p>
+      <div class="message">
+        <div class="en">Copy this URL below and send it.</div>
+        <div class="ja">
+          下記URLをコピーして、カードを送りたい相手にメールやSNSで送信
+        </div>
+      </div>
       <input id="url" type="text" :value="cardUrl" readonly />
-      <Button v-clipboard:copy="cardUrl" v-clipboard:success="copyURL">{{
-        isCopy ? 'copied!' : 'copy URL'
-      }}</Button>
-      <p class="or">or send it by your account</p>
+      <Button
+        v-clipboard:copy="cardUrl"
+        v-clipboard:success="copyURL"
+        class="button"
+        >{{ isCopy ? 'copied!' : 'copy URL' }}</Button
+      >
+      <div class="message">
+        <div class="en">Or send it by your account.</div>
+        <div class="ja">またはtwitter, LINEのアカウントで送信</div>
+      </div>
       <div class="button-container">
         <TweetButton :url="cardUrl" tweet="Send this card for you." />
         <LineButton :url="cardUrl" tweet="Send this card for you." />
@@ -92,22 +103,33 @@ export default {
   font-size: 20px;
   opacity: 0;
   transition: opacity 1s 2s;
-  p {
+  .message {
+    .ja {
+      color: $dark-054;
+      font-size: 12px;
+    }
   }
   input {
     width: 100%;
     margin: 24px auto;
+    padding: 8px;
     background: #fff;
-    border-bottom: 1px solid $dark-026;
+    border: 1px solid $dark-026;
   }
   &.isShow {
     opacity: 1;
+    .button-container {
+      display: flex;
+    }
   }
-  .or {
+  .button {
+    margin-bottom: 16px;
+  }
+  .message2 {
     padding-top: 16px;
   }
   .button-container {
-    display: flex;
+    display: none;
     justify-content: center;
   }
 }

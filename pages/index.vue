@@ -1,7 +1,8 @@
 <template>
   <section class="pageContainer">
     <Button @action="toMessage">
-      next
+      <span class="en">next: </span>
+      <span class="ja">言葉やイラストを描く</span>
     </Button>
   </section>
 </template>
