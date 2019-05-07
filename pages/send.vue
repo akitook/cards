@@ -103,6 +103,7 @@ export default {
   font-size: 20px;
   opacity: 0;
   transition: opacity 1s 2s;
+  z-index: -1;
   .message {
     .ja {
       color: $dark-054;

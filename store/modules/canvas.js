@@ -57,7 +57,7 @@ const mutations = {
     state.isDrawingMode = true
     state.isWritable = true
     state.data.freeDrawingBrush.width = 4
-    state.data.freeDrawingBrush.color = '#333'
+    state.data.freeDrawingBrush.color = 'rgba(49, 49, 49, 0.9)'
   },
   LOAD_CANVAS: (state, loadData) => {
     if (!state.data) {
@@ -119,7 +119,8 @@ const mutations = {
       left: 50,
       top: 50,
       width: 120,
-      fontSize: 20
+      fontSize: 20,
+      fill: 'rgba(49, 49, 49, 0.9)'
     })
     state.data.add(textbox).setActiveObject(textbox)
     state.data.isDrawingMode = false
