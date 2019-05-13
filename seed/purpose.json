@@ -10,9 +10,14 @@
     "number": "01"
   },
   {
-    "id": "congratulations",
+    "id": "congrats",
     "title": "Congrats",
     "number": "03"
+  },
+  {
+    "id": "love",
+    "title": "Love",
+    "number": "02"
   },
   {
     "id": "thankyou",
@@ -21,8 +26,8 @@
 
   },
   {
-    "id": "love",
-    "title": "Love",
-    "number": "02"
+    "id": "sorry",
+    "title": "Sorry",
+    "number": "05"
   }
 ]

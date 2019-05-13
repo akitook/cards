@@ -1,6 +1,6 @@
 <template>
   <div class="back-container">
-    <canvas id="canvas" :width="width" :height="height"></canvas>
+    <canvas id="canvas" :width="width" :height="height" />
     <CardBackground :type="card.template.bg ? card.template.bg : 0" />
   </div>
 </template>
@@ -37,11 +37,9 @@ export default {
       'touch:pinch': function(event) {
         alert(JSON.stringify(event))
         if (event.e.touches && event.e.touches.length === 2) {
-          console.log('multi touch')
         }
       },
       'text:editing:entered': e => {
-        console.log(e.target.type)
         if (e.target.type === 'textbox') {
           if (e.target.text === 'Tap and Type.') {
             const obj = this.canvas.data.getActiveObject()

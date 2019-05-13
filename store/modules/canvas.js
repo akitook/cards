@@ -57,7 +57,7 @@ const mutations = {
     state.isDrawingMode = true
     state.isWritable = true
     state.data.freeDrawingBrush.width = 4
-    state.data.freeDrawingBrush.color = 'rgba(49, 49, 49, 0.9)'
+    state.data.freeDrawingBrush.color = 'rgba(49, 49, 49, 0.85)'
   },
   LOAD_CANVAS: (state, loadData) => {
     if (!state.data) {
@@ -79,6 +79,7 @@ const mutations = {
     state.data.getObjects().forEach(function(object) {
       object.selectable = false
     })
+    state.data.selection = false
     state.data.renderAll()
   },
   SET_HISTORY: state => {
@@ -120,7 +121,7 @@ const mutations = {
       top: 50,
       width: 120,
       fontSize: 20,
-      fill: 'rgba(49, 49, 49, 0.9)'
+      fill: 'rgba(49, 49, 49, 0.85)'
     })
     state.data.add(textbox).setActiveObject(textbox)
     state.data.isDrawingMode = false

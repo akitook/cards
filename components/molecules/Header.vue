@@ -1,8 +1,9 @@
 <template>
   <div class="header" :class="{ flex: canvas.isWritable }">
-    <div class="logo-wrapper">
+    <div class="logo-wrapper" @click="clickLogo">
       <Logo :class="{ small: this.$route.name === 'message' }" />
     </div>
+    <InfoModal />
     <CardSelector />
     <CanvasActions />
     <div v-if="message" class="message">
@@ -17,28 +18,38 @@ import { mapState } from 'vuex'
 import Logo from '~/components/atoms/Logo.vue'
 import CardSelector from '~/components/organisms/CardSelector'
 import CanvasActions from '~/components/organisms/CanvasActions'
+import InfoModal from '~/components/organisms/InfoModal'
+
 export default {
   components: {
     Logo,
     CardSelector,
-    CanvasActions
+    CanvasActions,
+    InfoModal
   },
   computed: {
     ...mapState(['card', 'canvas']),
     message() {
       let message = null
-      if (this.$route.name === 'send' && !this.card.isSend) {
+      if (this.$route.name === 'send' && this.card.isReady) {
         message = {
           en: 'Tap your card to post.',
           ja: '準備ができたらカードをタップ'
         }
       } else if (this.$route.name === 'card') {
         message = {
-          en: 'Tap to flip this card.',
+          en: 'Tap this card to flip.',
           ja: 'カードをタップ'
         }
       }
       return message
+    }
+  },
+  methods: {
+    clickLogo() {
+      if (this.$route.name !== 'message') {
+        this.$router.push('/')
+      }
     }
   }
 }

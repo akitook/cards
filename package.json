@@ -1,7 +1,7 @@
 {
   "name": "cards",
   "version": "1.0.0",
-  "description": "Send your card to other",
+  "description": "言葉とイラストを描いてメッセージカードを贈りましょう。",
   "author": "Akito Okubo",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/style-resources": "^0.1.2",
     "animate.css": "^3.7.0",

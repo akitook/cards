@@ -56,7 +56,7 @@
       <iconButton text="paper" @action="switchBg">
         <div
           class="bgIcon"
-          :class="`type-${card.template.bg ? card.template.bg + 1 : 0}`"
+          :class="`type-${card.template.bg ? card.template.bg : 0}`"
         />
       </iconButton>
       <IconButton text="undo" @action="undoCanvas">
@@ -150,16 +150,16 @@ export default {
     &.type-0 {
       background: url('~assets/img/bg/exclusive_paper_@2x.png') center center;
     }
-    &.type-2 {
+    &.type-1 {
       background: url('~assets/img/bg/linedpaper_@2x.png') center center;
     }
-    &.type-3 {
+    &.type-2 {
       background: url('~assets/img/bg/handmadepaper_@2x.png') center center;
     }
-    &.type-4 {
+    &.type-3 {
       background: url('~assets/img/bg/hip-square.png') center center;
     }
-    &.type-5 {
+    &.type-4 {
     }
   }
 }

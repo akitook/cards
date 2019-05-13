@@ -66,7 +66,7 @@ export default {
 <style scoped lang="scss">
 .ShowCard-enter-active,
 .ShowCard-leave-active {
-  transition: opacity 0.5s 2s;
+  transition: opacity 0.5s;
 }
 .ShowCard-enter, .ShowCard-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -76,14 +76,14 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation: fadeInDown 3s forwards;
-  @-webkit-keyframes fadeInDown {
+  animation: showCard 4s forwards;
+  @-webkit-keyframes showCard {
     0% {
       opacity: 0;
       -webkit-transform: translate3d(0, -100%, 0);
       transform: translate3d(0, -100%, 0);
     }
-    20% {
+    40% {
       opacity: 0;
       -webkit-transform: translate3d(0, -100%, 0);
       transform: translate3d(0, -100%, 0);
@@ -96,13 +96,13 @@ export default {
     }
   }
 
-  @keyframes fadeInDown {
+  @keyframes showCard {
     0% {
       opacity: 0;
       -webkit-transform: translate3d(0, -100%, 0);
       transform: translate3d(0, -100%, 0);
     }
-    20% {
+    40% {
       opacity: 0;
       -webkit-transform: translate3d(0, -100%, 0);
       transform: translate3d(0, -100%, 0);
@@ -127,7 +127,7 @@ export default {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   transform-style: preserve-3d;
   transform: scale(0.9);
-  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s,
+  transition: transform 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s,
     width 0.7s ease-in-out, height 0.7s ease-in-out,
     box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;

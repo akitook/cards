@@ -1,6 +1,11 @@
 <template>
   <div
-    :class="{ flipped: isFlipped, ready: isReadySend, send: isSend }"
+    :class="{
+      opening: isOpening,
+      flipped: isFlipped,
+      ready: isReadySend,
+      send: isSend
+    }"
     class="card-container"
     :style="styles"
     @click="sendCard"
@@ -32,6 +37,7 @@ export default {
       isFlipped: 'card/isFlipped',
       isReadySend: 'card/isReady',
       isSend: 'card/isSend',
+      isOpening: 'card/isOpening',
       getCardSize: 'card/getCardSize'
     }),
     styles() {
@@ -78,12 +84,27 @@ export default {
   -webkit-transform-origin: var(--originX) var(--originY);
   transform-origin: var(--originX) var(--originY);
   transform: scale(0.7);
-  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s,
+  transition: transform 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s,
     transform-origin 0.5s, width 0.7s ease-in-out, height 0.7s ease-in-out,
     margin 0.7s ease-in-out, box-shadow 0.7s ease-in-out 1s;
   cursor: pointer;
   animation-duration: 1s;
   z-index: 10;
+  &.opening {
+    //animation: opening 2s forwards;
+    transform: scale(2);
+    @keyframes opening {
+      0% {
+        transform: scale(2);
+      }
+      20% {
+        transform: scale(2);
+      }
+      100% {
+        transform: scale(0.7);
+      }
+    }
+  }
   &.flipped {
     margin: 0 auto;
     transform: rotateX(180deg) scale(var(--scale));
@@ -108,7 +129,7 @@ export default {
   &.send {
     margin: 0 auto;
     transform-style: preserve-3d;
-    @-webkit-keyframes bounceOutUp {
+    @-webkit-keyframes sendCard {
       20% {
         opacity: 1;
         -webkit-transform: translate3d(0, -10px, 0);
@@ -129,7 +150,7 @@ export default {
       }
     }
 
-    @keyframes bounceOutUp {
+    @keyframes sendCard {
       20% {
         opacity: 1;
         -webkit-transform: translate3d(0, -10px, 0);
@@ -149,7 +170,7 @@ export default {
         transform: translate3d(0, -2000px, 0) rotateX(0deg) scale(0.7);
       }
     }
-    animation: bounceOutUp forwards 3s;
+    animation: sendCard forwards 3s;
   }
   .ripple-container {
     position: absolute;

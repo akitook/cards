@@ -41,6 +41,9 @@ export default {
   width: 100%;
   margin: 0 auto 8px;
   .container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0 16px;

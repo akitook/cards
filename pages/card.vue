@@ -9,6 +9,27 @@ export default {
   components: {
     ShowCard
   },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: 'https://cards.hauer.jp/card'
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'メッセージカードが届いています。'
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'メッセージカードが届いています。'
+        }
+      ]
+    }
+  },
   data() {
     return {
       isShowModal: false,

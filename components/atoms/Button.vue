@@ -24,6 +24,7 @@ export default {
   border: 2px solid $dark-054;
   border-radius: 0.4em 2em 0.5em 3em/3em 0.5em 2em 0.5em;
   color: $dark-087;
+  transition: 0.2s;
   &:hover {
     cursor: pointer;
   }
@@ -42,6 +43,10 @@ export default {
     a {
       color: $dark-054;
     }
+  }
+  &.black {
+    color: #fff;
+    background: $dark-087;
   }
   &.red {
     display: inline-block;

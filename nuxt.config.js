@@ -15,7 +15,24 @@ export default {
         content:
           'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
       },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'og:site_name', property: 'og:site_name', content: pkg.name },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://cards.hauer.jp' },
+      { hid: 'og:title', property: 'og:title', content: 'cards' },
+      { hid: 'fb:app_id', property: 'fb:app_id', content: '2241313329438165' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@hauer93446756' },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: pkg.description
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://cards.hauer.jp/ogp.jpg'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -34,10 +51,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    'ress/ress.css',
-    'animate.css/animate.css'
-  ],
+  css: ['ress/ress.css', 'animate.css/animate.css'],
 
   /*
    ** Plugins to load before mounting the App
@@ -47,7 +61,16 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/style-resources'],
+  modules: [
+    '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
+    [
+      '@nuxtjs/google-gtag',
+      {
+        id: 'UA-130250950-2'
+      }
+    ]
+  ],
   styleResources: {
     sass: ['@/assets/sass/variable.scss']
   },

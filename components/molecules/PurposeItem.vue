@@ -7,14 +7,15 @@
       />
       <Flower v-if="data.id === 'flower'" :selected="selected === 'flower'" />
       <Congratulations
-        v-if="data.id === 'congratulations'"
-        :selected="selected === 'congratulations'"
+        v-if="data.id === 'congrats'"
+        :selected="selected === 'congrats'"
       />
       <Love v-if="data.id === 'love'" :selected="selected === 'love'" />
       <ThankYou
         v-if="data.id === 'thankyou'"
         :selected="selected === 'thankyou'"
       />
+      <Sorry v-if="data.id === 'sorry'" :selected="selected === 'sorry'" />
     </div>
     <div class="title">{{ data.title }}</div>
   </div>
@@ -25,6 +26,7 @@ import Congratulations from '~/components/atoms/icons/Congratulations'
 import Flower from '~/components/atoms/icons/Flower'
 import Love from '~/components/atoms/icons/Love'
 import ThankYou from '~/components/atoms/icons/ThankYou'
+import Sorry from '~/components/atoms/icons/Sorry'
 
 export default {
   components: {
@@ -32,7 +34,8 @@ export default {
     Congratulations,
     Flower,
     Love,
-    ThankYou
+    ThankYou,
+    Sorry
   },
   props: {
     data: {

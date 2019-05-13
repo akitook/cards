@@ -1,5 +1,5 @@
 <template>
-  <div :class="color" class="IconButton" @click="$emit('action')">
+  <div :class="[color, size]" class="IconButton" @click="$emit('action')">
     <slot></slot>
     <div class="text">{{ text }}</div>
   </div>
@@ -14,6 +14,10 @@ export default {
     text: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String,
+      default: 'medium'
     }
   }
 }
@@ -33,14 +37,22 @@ export default {
     }
   }
   &.gray {
-    color: $dark-087;
+    color: $dark-054;
     path {
-      fill: $dark-087;
+      fill: $dark-054;
     }
+  }
+  &.small {
+    font-size: 10px;
   }
   svg {
     display: block;
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 320px) {
+  .IconButton {
+    padding: 0 8px;
   }
 }
 </style>

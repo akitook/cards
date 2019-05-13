@@ -7,10 +7,18 @@
           下記URLをコピーして、カードを送りたい相手にメールやSNSで送信
         </div>
       </div>
-      <input id="url" type="text" :value="cardUrl" readonly />
+      <input
+        id="url"
+        ref="url"
+        type="text"
+        :value="cardUrl"
+        readonly
+        @click="focusUrl"
+      />
       <Button
         v-clipboard:copy="cardUrl"
-        v-clipboard:success="copyURL"
+        v-clipboard:success="copyUrl"
+        :class="{ black: isCopy }"
         class="button"
         >{{ isCopy ? 'copied!' : 'copy URL' }}</Button
       >
@@ -19,15 +27,26 @@
         <div class="ja">またはtwitter, LINEのアカウントで送信</div>
       </div>
       <div class="button-container">
-        <TweetButton :url="cardUrl" tweet="Send this card for you." />
-        <LineButton :url="cardUrl" tweet="Send this card for you." />
+        <TweetButton :url="cardUrl" />
+        <LineButton :url="cardUrl" />
       </div>
+      <small class="caution"
+        >現在テスト稼働中のため予告なくURLにアクセスできなくなる場合があります。ご了承ください。</small
+      >
+      <Button
+        v-if="card.isSend"
+        role="secondary"
+        class="backHomeButton"
+        @action="backToHome"
+        >back to home</Button
+      >
     </div>
-    <Button v-if="!card.isSend" role="secondary" @action="backToMessage"
+    <Button
+      v-if="card.isReady"
+      role="secondary"
+      class="backButton"
+      @action="backToMessage"
       >back</Button
-    >
-    <Button v-if="card.isSend" role="secondary" @action="backToHome"
-      >back to home</Button
     >
   </section>
 </template>
@@ -69,7 +88,7 @@ export default {
       this.$store.dispatch('card/clearAll')
       this.$router.push('/')
     },
-    copyURL() {
+    copyUrl() {
       this.isCopy = true
       /*
       if (process.client) {
@@ -83,6 +102,9 @@ export default {
         this.isCopy = true
       }
       */
+    },
+    focusUrl() {
+      this.$refs.url.select()
     }
   }
 }
@@ -95,15 +117,14 @@ export default {
 }
 .link-container {
   position: absolute;
-  top: calc(50% - 150px);
+  top: calc(50% - 200px);
   left: calc(50% - 150px);
   width: 300px;
-  height: 300px;
+  height: 400px;
   font-family: $font-1;
   font-size: 20px;
   opacity: 0;
   transition: opacity 1s 2s;
-  z-index: -1;
   .message {
     .ja {
       color: $dark-054;
@@ -123,6 +144,10 @@ export default {
       display: flex;
     }
   }
+  .caution {
+    margin: 16px auto;
+    font-size: 12px;
+  }
   .button {
     margin-bottom: 16px;
   }
@@ -132,6 +157,12 @@ export default {
   .button-container {
     display: none;
     justify-content: center;
+  }
+  .backButton {
+    z-index: 999;
+  }
+  .backHomeButton {
+    margin: 16px auto;
   }
 }
 </style>

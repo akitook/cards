@@ -21,12 +21,16 @@ const state = {
 
 const getters = {
   cardUrl: state => {
-    return `https://cards.hauer.jp/card?id=${state.id}`
+    return `https://cards.hauer.jp/card/?id=${state.id}`
   },
   cardFrontUrl: state => {
-    return `/templates/${state.template.category}/${
-      state.template.title
-    }@2x.jpg`
+    const fileName = state.template.title
+      ? state.template.title
+      : state.template.category + '01'
+    return `/templates/${state.template.category}/${fileName}@2x.jpg`
+  },
+  isOpening: state => {
+    return state.isFlipped
   },
   isFlipped: state => {
     return state.isFlipped
@@ -140,7 +144,7 @@ const mutations = {
     }
   },
   SWITCH_BG: state => {
-    if (state.template.bg < 5) {
+    if (state.template.bg < 4) {
       state.template = {
         ...state.template,
         bg: state.template.bg + 1
@@ -168,16 +172,20 @@ const mutations = {
   CHANGE_READY: (state, boolean) => {
     state.isReady = boolean
   },
-  START_SEND_CARD: state => {},
-  FAILED_SEND_CARD: state => {},
+  START_SEND_CARD: state => {
+    state.isReady = false
+  },
+  FAILED_SEND_CARD: state => {
+    state.isReady = true
+  },
   SUCCESS_SEND_CARD: (state, postContent) => {
     state.isSend = true
     state.id = postContent.id
   },
   CLEAR_ALL: state => {
-    state.id = '0000'
+    state.id = '0001'
     state.template = {
-      id: '0000',
+      id: '0001',
       category: 'seasonal'
     }
     state.isFlipped = false

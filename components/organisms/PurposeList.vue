@@ -41,35 +41,46 @@ export default {
   position: relative;
   width: 88%;
   margin: 0 auto;
-  &:before {
-    position: absolute;
-    content: '';
-    top: 24px;
-    left: -8px;
-    width: 10px;
-    height: 10px;
-    border-top: 1px solid $dark-054;
-    border-left: 1px solid $dark-054;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-  }
-  &:after {
-    position: absolute;
-    content: '';
-    top: 24px;
-    right: -8px;
-    width: 10px;
-    height: 10px;
-    border-top: 1px solid $dark-054;
-    border-left: 1px solid $dark-054;
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-  }
   .container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      display: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 320px) {
+  .PurposeList {
+    .container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &:before {
+      position: absolute;
+      content: '';
+      top: 24px;
+      left: -8px;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid $dark-054;
+      border-left: 1px solid $dark-054;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+    &:after {
+      position: absolute;
+      content: '';
+      top: 24px;
+      right: -8px;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid $dark-054;
+      border-left: 1px solid $dark-054;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
     }
   }
 }

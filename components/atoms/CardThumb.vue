@@ -21,10 +21,10 @@ export default {
 <style scoped lang="scss">
 .CardThumb {
   flex: 0 0;
-  display: table-cell;
+  margin: 6px;
   box-shadow: 0 0 4px 0 rgba(14, 19, 24, 0.15);
   border-collapse: separate;
-  border-spacing: 2px 0;
+  border-spacing: 4px 0;
   transition: all 0.2s;
   line-height: 0;
   &.selected {
