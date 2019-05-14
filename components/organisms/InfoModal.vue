@@ -41,14 +41,33 @@
         </IconButton>
         <div class="modal-container">
           <div class="title">About</div>
-          <div class="content">
-            <p>メッセージカードをweb上で贈ることができるサービスです。</p>
-            <p>
-              完成したらURLをメールやSNSで贈りたい相手に共有するか、Twitter,LINEを使っている方はボタンから直接贈ることができます。
-            </p>
-            <small>
-              ※このサービスはテスト稼働中のため予告なく作成データを削除する場合があります。ご了承ください。
-            </small>
+          <div class="contents">
+            <div class="content">
+              <p class="en">
+                "Cards" is a web service that you can make message cards and
+                give on the web.
+              </p>
+              <p class="en">
+                If you make a card, you can share the URL with the person you
+                want to give by email or SNS, or you can give it directly from
+                the button if you are using Twitter or LINE.
+              </p>
+              <p class="en">
+                As this service is in test operation, we may delete creation
+                data without notice. Please note.
+              </p>
+            </div>
+            <div class="content">
+              <p class="ja">
+                「Cards」はメッセージカードをweb上で贈ることができるサービスです。
+              </p>
+              <p class="ja">
+                完成したらURLをメールやSNSで贈りたい相手に共有するか、Twitter,LINEを使っている方はボタンから直接贈ることができます。
+              </p>
+              <p class="ja">
+                このサービスはテスト稼働中のため予告なく作成データを削除する場合があります。ご了承ください。
+              </p>
+            </div>
             <div class="twitter">
               Twitter:
               <a href="https://twitter.com/hauer93446756" target="_blank"
@@ -123,11 +142,19 @@ export default {
 .title {
   font-size: 24px;
 }
-.content {
+.contents {
   margin: 32px 0;
   text-align: left;
+  .content {
+    margin-bottom: 16px;
+  }
   p {
     margin-bottom: 8px;
+    font-size: 18px;
+    &.ja {
+      color: $dark-054;
+      font-size: 14px;
+    }
   }
   .twitter {
     margin: 16px 0;

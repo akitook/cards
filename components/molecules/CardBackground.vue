@@ -1,6 +1,6 @@
 <template>
   <div class="CardBackground">
-    <div v-if="type === 1" class="grid">
+    <div v-if="type === 4" class="grid">
       <div />
       <div />
       <div />
@@ -65,7 +65,7 @@ export default {
     &.type-3 {
       background: url('~assets/img/bg/hip-square.png') center center;
     }
-    &.type-4 {
+    &.type-5 {
     }
   }
 }

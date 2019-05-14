@@ -60,6 +60,11 @@ export default {
       if (this.isReadySend) {
         const canvasData = JSON.stringify(this.canvas.data.toJSON())
         this.$store.dispatch('card/send', canvasData)
+        this.$gtag('event', 'sendCard', {
+          template_title: this.card.template.title,
+          background_image: this.card.template.bg,
+          canvas_history: this.canvas.history.length
+        })
       }
     },
     pinch(e) {}

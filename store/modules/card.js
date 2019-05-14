@@ -144,7 +144,7 @@ const mutations = {
     }
   },
   SWITCH_BG: state => {
-    if (state.template.bg < 4) {
+    if (state.template.bg < 5) {
       state.template = {
         ...state.template,
         bg: state.template.bg + 1

@@ -56,7 +56,7 @@
       <iconButton text="paper" @action="switchBg">
         <div
           class="bgIcon"
-          :class="`type-${card.template.bg ? card.template.bg : 0}`"
+          :class="`type-${card.template.bg < 5 ? card.template.bg + 1 : 0}`"
         />
       </iconButton>
       <IconButton text="undo" @action="undoCanvas">
@@ -159,7 +159,7 @@ export default {
     &.type-3 {
       background: url('~assets/img/bg/hip-square.png') center center;
     }
-    &.type-4 {
+    &.type-5 {
     }
   }
 }
