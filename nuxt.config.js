@@ -21,8 +21,6 @@ export default {
       { hid: 'og:url', property: 'og:url', content: 'https://cards.hauer.jp' },
       { hid: 'og:title', property: 'og:title', content: 'cards' },
       { hid: 'fb:app_id', property: 'fb:app_id', content: '2241313329438165' },
-      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
-      { hid: 'twitter:site', name: 'twitter:site', content: '@hauer93446756' },
       {
         hid: 'og:description',
         property: 'og:description',
@@ -31,6 +29,27 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
+        content: 'https://cards.hauer.jp/ogp.jpg'
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@hauer93446756' },
+      {
+        hid: 'twitter:title',
+        property: 'twitter:title',
+        content: pkg.name
+      },
+      {
+        hid: 'twitter:description',
+        property: 'twitter:description',
+        content: pkg.description
+      },
+      {
+        hid: 'twitter:image',
+        property: 'twitter:image',
         content: 'https://cards.hauer.jp/ogp.jpg'
       }
     ],

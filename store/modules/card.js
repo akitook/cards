@@ -8,6 +8,8 @@ const state = {
     title: 'seasonal01',
     bg: 0
   },
+  from: '',
+  to: '',
   isFlipped: false,
   isReady: false,
   isSend: false,
@@ -21,7 +23,7 @@ const state = {
 
 const getters = {
   cardUrl: state => {
-    return `https://cards.hauer.jp/card/?id=${state.id}`
+    return `https://cards.hauer.jp/card/${state.id}`
   },
   cardFrontUrl: state => {
     const fileName = state.template.title
@@ -36,7 +38,7 @@ const getters = {
     return state.isFlipped
   },
   isReady: state => {
-    return state.isReady
+    return !!(state.isReady && state.from.length > 0 && state.to.length > 0)
   },
   isSend: state => {
     return state.isSend
@@ -82,8 +84,13 @@ const actions = {
   },
   send({ dispatch, commit, getters }, canvasData) {
     commit('START_SEND_CARD')
+    const templateData = {
+      ...state.template,
+      from: state.from,
+      to: state.to
+    }
     firebase
-      .postCard(state.template, canvasData, getters.getCardSize)
+      .postCard(templateData, canvasData, getters.getCardSize)
       .then(res => {
         dispatch('canvas/clear', '', { root: true })
         commit('SUCCESS_SEND_CARD', res)

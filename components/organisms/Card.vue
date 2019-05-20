@@ -4,6 +4,7 @@
       opening: isOpening,
       flipped: isFlipped,
       ready: isReadySend,
+      beforeReady: this.$route.name === 'send' && !isReadySend,
       send: isSend
     }"
     class="card-container"
@@ -44,13 +45,7 @@ export default {
       return {
         '--width': `${this.getCardSize.width}px`,
         '--height': `${this.getCardSize.height}px`,
-        '--scale': this.card.zoom.scale,
-        '--originX': `${
-          this.card.zoom.x ? this.card.zoom.x : this.getCardSize.x / 2
-        }px`,
-        '--originY': `${
-          this.card.zoom.y ? this.card.zoom.y : this.getCardSize.y / 2
-        }px`
+        '--scale': this.card.zoom.scale
       }
     }
   },
@@ -83,7 +78,7 @@ export default {
   max-width: var(--width);
   height: var(--height);
   max-height: var(--height);
-  margin: -52px auto;
+  margin: -54px auto;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   transform-style: preserve-3d;
   -webkit-transform-origin: var(--originX) var(--originY);
@@ -116,7 +111,7 @@ export default {
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
   }
   &.ready {
-    margin: 0 auto;
+    margin: 16px auto;
     transform: rotateX(0deg) scale(0.7);
     @keyframes yurayura {
       0% {
@@ -130,6 +125,9 @@ export default {
       }
     }
     animation: yurayura 4s infinite 2s;
+  }
+  &.beforeReady {
+    margin: 16px auto;
   }
   &.send {
     margin: 0 auto;
@@ -147,11 +145,11 @@ export default {
         -webkit-transform: translate3d(0, 20px, 0);
         transform: translate3d(0, 20px, 0) rotateX(0deg) scale(0.7);
       }
-
       to {
         opacity: 0;
         -webkit-transform: translate3d(0, -2000px, 0);
         transform: translate3d(0, -2000px, 0) rotateX(0deg) scale(0.7);
+        height: var(--height);
       }
     }
 
@@ -168,7 +166,6 @@ export default {
         -webkit-transform: translate3d(0, 20px, 0);
         transform: translate3d(0, 20px, 0) rotateX(0deg) scale(0.7);
       }
-
       to {
         opacity: 0;
         -webkit-transform: translate3d(0, -2000px, 0);

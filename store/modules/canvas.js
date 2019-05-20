@@ -6,7 +6,7 @@ const state = {
   history: [],
   mods: 0,
   isWritable: null,
-  isDrawingMode: null
+  isDrawingMode: false
 }
 
 const getters = {}
@@ -107,7 +107,9 @@ const mutations = {
     }
   },
   CHANGE_WRITABLE: (state, boolean) => {
-    state.data.isDrawingMode = boolean
+    if (state.data) {
+      state.data.isDrawingMode = boolean
+    }
     state.isDrawingMode = boolean
     state.isWritable = boolean
   },

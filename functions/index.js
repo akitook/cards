@@ -10,5 +10,5 @@ const functions = require('firebase-functions')
 const cardPage = require('./cardPage.js')
 
 module.exports = {
-  // cardPage: functions.https.onRequest(cardPage)
+  cardPage: functions.https.onRequest(cardPage)
 }

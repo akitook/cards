@@ -1,6 +1,6 @@
 <template>
   <section v-show="card.zoom.scale <= 1" class="pageContainer">
-    <Button role="secondary" @action="backToHome">
+    <Button role="secondary" @action="backToDesign">
       back
     </Button>
     <Button v-if="canvas.history.length > 0" @action="toSend">
@@ -26,7 +26,7 @@ export default {
     this.$store.dispatch('canvas/changeWritable', true)
   },
   methods: {
-    backToHome() {
+    backToDesign() {
       this.$router.push('/')
     },
     toSend() {

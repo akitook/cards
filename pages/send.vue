@@ -1,12 +1,7 @@
 <template>
   <section class="page-container">
+    <NameContainer />
     <div class="link-container" :class="{ isShow: card.isSend }">
-      <div class="message">
-        <div class="en">Copy this URL below and send it.</div>
-        <div class="ja">
-          下記URLをコピーして、カードを送りたい相手にメールやSNSで送信
-        </div>
-      </div>
       <input
         id="url"
         ref="url"
@@ -53,12 +48,14 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import NameContainer from '~/components/organisms/NameContainer'
 import Button from '~/components/atoms/Button.vue'
 import LineButton from '~/components/atoms/LineButton.vue'
 import TweetButton from '~/components/atoms/TweetButton.vue'
 
 export default {
   components: {
+    NameContainer,
     Button,
     LineButton,
     TweetButton
@@ -125,6 +122,7 @@ export default {
   font-size: 20px;
   opacity: 0;
   transition: opacity 1s 2s;
+  z-index: -1;
   .message {
     .ja {
       color: $dark-054;
@@ -140,6 +138,7 @@ export default {
   }
   &.isShow {
     opacity: 1;
+    z-index: 10;
     .button-container {
       display: flex;
     }
