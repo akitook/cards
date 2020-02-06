@@ -84,6 +84,7 @@ dist
 sw.*
 
 
-config
+config/firebase-init.json
+config/firebaseAdmin-key.json
 
 .firebase
