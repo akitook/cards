@@ -1,10 +1,12 @@
 <template>
   <div class="PurposeItem" @click="$emit('select')">
     <div class="icon">
+      <!--
       <Seasonal
         v-if="data.id === 'seasonal'"
         :selected="selected === 'seasonal'"
       />
+      -->
       <Flower v-if="data.id === 'flower'" :selected="selected === 'flower'" />
       <Congratulations
         v-if="data.id === 'congrats'"
@@ -21,7 +23,7 @@
   </div>
 </template>
 <script>
-import Seasonal from '~/components/atoms/icons/Seasonal'
+// import Seasonal from '~/components/atoms/icons/Seasonal'
 import Congratulations from '~/components/atoms/icons/Congratulations'
 import Flower from '~/components/atoms/icons/Flower'
 import Love from '~/components/atoms/icons/Love'
@@ -30,7 +32,7 @@ import Sorry from '~/components/atoms/icons/Sorry'
 
 export default {
   components: {
-    Seasonal,
+    // Seasonal,
     Congratulations,
     Flower,
     Love,

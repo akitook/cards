@@ -84,6 +84,6 @@ dist
 sw.*
 
 
-config/
+config
 
 .firebase

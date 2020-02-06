@@ -2,7 +2,7 @@ import seedCardsData from '../../seed/cards'
 const state = {
   isFetching: false,
   records: seedCardsData,
-  category: 'seasonal'
+  category: 'flower'
 }
 
 const getters = {

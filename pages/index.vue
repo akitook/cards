@@ -28,7 +28,6 @@ export default {
   }
 }
 </script>
-
 <style scoped lang="scss">
 .pageContainer {
   padding: 16px;

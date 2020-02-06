@@ -1,10 +1,5 @@
 [
   {
-    "id": "seasonal",
-    "title": "Seasonal",
-    "number": "00"
-  },
-  {
     "id": "flower",
     "title": "Flower",
     "number": "01"

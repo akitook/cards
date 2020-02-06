@@ -1,22 +1,5 @@
 [
   {
-    "id": "0001",
-    "title": "seasonal01",
-    "category": "seasonal",
-    "credit": "",
-    "creditLink": ""
-  },
-  {
-    "id": "0007",
-    "title": "fathersday01",
-    "category": "seasonal"
-  },
-  {
-    "id": "0008",
-    "title": "fathersday02",
-    "category": "seasonal"
-  },
-  {
     "id": "0101",
     "title": "flower01",
     "category": "flower",

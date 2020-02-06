@@ -1,11 +1,11 @@
 import firebase from '../../api/firebase'
 
 const state = {
-  id: '0001',
+  id: '0101',
   template: {
-    id: '0001',
-    category: 'seasonal',
-    title: 'seasonal01',
+    id: '0101',
+    category: 'flower',
+    title: 'flower01',
     bg: 0
   },
   from: '',
@@ -190,10 +190,10 @@ const mutations = {
     state.id = postContent.id
   },
   CLEAR_ALL: state => {
-    state.id = '0001'
+    state.id = '0101'
     state.template = {
-      id: '0001',
-      category: 'seasonal'
+      id: '0101',
+      category: 'flower'
     }
     state.isFlipped = false
     state.isReady = false

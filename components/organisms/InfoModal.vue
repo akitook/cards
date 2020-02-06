@@ -68,12 +68,6 @@
                 このサービスはテスト稼働中のため予告なく作成データを削除する場合があります。ご了承ください。
               </p>
             </div>
-            <div class="twitter">
-              Twitter:
-              <a href="https://twitter.com/hauer93446756" target="_blank"
-                >hauer93446756</a
-              >
-            </div>
           </div>
         </div>
       </div>
