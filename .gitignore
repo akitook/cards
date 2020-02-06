@@ -83,8 +83,7 @@ dist
 # Service worker
 sw.*
 
+.firebase
 
 config/firebase-init.json
 config/firebaseAdmin-key.json
-
-.firebase
